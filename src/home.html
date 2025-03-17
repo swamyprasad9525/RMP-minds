@@ -7,25 +7,70 @@
     <link rel="stylesheet" href="output.css">
 </head>
 <body class="bg-gray-100">
-    <header class="h-20 w-full fixed top-0 left-0 border-b-2 border-green-900 flex items-center justify-between backdrop-blur-md bg-green-950/70 z-50">
-        <h1 class="font-serif text-4xl p-4 text-white">RMP Minds</h1>
-        <nav class="flex items-center space-x-8 pr-8">
+
+    <!-- Header -->
+    <header class="h-20 w-full fixed top-0 left-0 border-b-2 border-green-900 flex items-center justify-between backdrop-blur-md bg-green-950/80 shadow-lg z-50 px-6">
+        <h1 class="font-serif text-4xl text-white">RMP Minds</h1>
+        <nav class="flex items-center space-x-6">
             <a href="#" class="text-white hover:text-green-300 transition duration-300">Home</a>
-            <a href="#" class="text-white hover:text-green-300 transition duration-300">About</a>
-            <a href="#" class="text-white hover:text-green-300 transition duration-300">Contact</a>
+            <a href="#about" class="text-white hover:text-green-300 transition duration-300">About</a>
+            <a href="#services" class="text-white hover:text-green-300 transition duration-300">Services</a>
+            <a href="#contact" class="text-white hover:text-green-300 transition duration-300">Contact</a>
             <a href="login.html" class="bg-green-500 text-white px-6 py-2 rounded-full hover:bg-green-600 transition duration-300 transform hover:scale-105">Login</a>
         </nav>
     </header>
 
-    <main class="pt-20 h-120">
-        <section class="p-8">
-            <h2 class="text-3xl font-bold text-green-900 text-center mt-30">Welcome to RMP Minds</h2>
-    
-        </section>
+    <!-- Hero Section -->
+    <main class="pt-24 flex flex-col items-center justify-center text-center min-h-screen px-6">
+        <h2 class="text-5xl font-bold text-green-900">Your Health, Our Priority</h2>
+        <p class="text-lg text-gray-700 mt-4 max-w-2xl">
+            RMP Minds provides quick and reliable remote medical assistance, prescriptions, and health tracking. Stay healthy with expert recommendations at your fingertips.
+        </p>
+        <a href="services.html" class="mt-6 bg-green-600 text-white px-8 py-3 rounded-full hover:bg-green-700 transition duration-300 transform hover:scale-105">
+            Get Started
+        </a>
     </main>
 
-    <footer class="bg-green-950 text-white text-center py-4 mt-8">
+    <!-- About Section -->
+    <section id="about" class="bg-white py-16 px-6 text-center">
+        <h2 class="text-4xl font-bold text-green-900">About RMP Minds</h2>
+        <p class="text-lg text-gray-700 mt-4 max-w-3xl mx-auto">
+            RMP Minds is a digital platform designed to bridge the gap between patients and remote medical professionals. Our AI-driven system allows users to input health details and receive expert advice instantly.
+        </p>
+    </section>
+
+    <!-- Features Section -->
+    <section id="services" class="bg-gray-50 py-16 px-6 text-center">
+        <h2 class="text-4xl font-bold text-green-900">Our Services</h2>
+        <div class="flex flex-wrap justify-center gap-8 mt-8">
+            <div class="bg-white shadow-lg p-6 rounded-lg w-80 hover:scale-105 transition">
+                <h3 class="text-2xl font-semibold text-green-800">Remote Consultations</h3>
+                <p class="text-gray-600 mt-2">Talk to certified medical professionals from anywhere.</p>
+            </div>
+            <div class="bg-white shadow-lg p-6 rounded-lg w-80 hover:scale-105 transition">
+                <h3 class="text-2xl font-semibold text-green-800">AI-Powered Prescriptions</h3>
+                <p class="text-gray-600 mt-2">Receive AI-suggested prescriptions based on symptoms.</p>
+            </div>
+            <div class="bg-white shadow-lg p-6 rounded-lg w-80 hover:scale-105 transition">
+                <h3 class="text-2xl font-semibold text-green-800">Health Monitoring</h3>
+                <p class="text-gray-600 mt-2">Track vital signs like pulse, weight, and BMI.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="bg-green-900 text-white py-16 text-center">
+        <h2 class="text-4xl font-bold">Get in Touch</h2>
+        <p class="text-lg mt-4">Have questions? Reach out to us anytime.</p>
+        <a href="mailto:info@rmpminds.com" class="mt-6 inline-block bg-white text-green-900 px-6 py-3 rounded-full font-bold hover:bg-gray-300 transition">
+            Contact Us
+        </a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-green-950 text-white text-center py-4">
         <p>&copy; 2025 RMP Minds. All rights reserved.</p>
     </footer>
+
 </body>
 </html>
