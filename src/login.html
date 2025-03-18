@@ -3,48 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RMD MINDS - Login</title>
+    <title>RMD Minds - Login</title>
     <link rel="stylesheet" href="output.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
-<body class="flex items-center justify-center min-h-screen bg-gray-100">
-    <div class="w-full max-w-md bg-white p-8 rounded-lg shadow-md">
-        <h1 class="text-3xl font-bold text-center text-gray-700 flex items-center justify-center">
-            <span class="text-blue-500 text-4xl">R</span><span class="text-gray-700">MP MINDS</span>
-        </h1>
-        <p class="text-center text-gray-500 font-bold">Welcome back!</p>
-        
-        <form class="mt-6">
+<body class="min-h-screen bg-gradient-to-br from-blue-50 to-gray-100 flex items-center justify-center p-4">
+    <div class="w-full max-w-md bg-white rounded-xl shadow-md p-6 sm:p-8 transition-all hover:shadow-lg">
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-gray-800">
+                <span class="text-blue-600 text-4xl">R</span>MD Minds
+            </h1>
+            <p class="text-gray-600 mt-2">Sign in to your account</p>
+        </div>
+
+        <form id="loginForm" class="space-y-6">
             <div>
-                <label class="block text-gray-700">Email</label>
-                <input type="email" placeholder="Enter your email" class="w-full mt-2 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
+                <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+                <div class="mt-1 relative">
+                    <input type="email" id="email" name="email" placeholder="your@email.com" 
+                           class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all" 
+                           required>
+                    <i class="fas fa-envelope absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
+                </div>
             </div>
-            
-            <div class="mt-4">
-                <label class="block text-gray-700">Password</label>
-                <input type="password" placeholder="Enter your password" class="w-full mt-2 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
+
+            <div>
+                <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                <div class="mt-1 relative">
+                    <input type="password" id="password" name="password" placeholder="••••••••" 
+                           class="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all" 
+                           required>
+                    <i class="fas fa-lock absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
+                    <button type="button" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 password-toggle">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
             </div>
-            
-            <div class="mt-2 text-right">
-                <a href="#" class="text-blue-500 text-sm hover:underline">Forgot password?</a>
+
+            <div class="flex items-center justify-between text-sm">
+                <label class="flex items-center">
+                    <input type="checkbox" name="remember" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                    <span class="ml-2 text-gray-600">Remember me</span>
+                </label>
+                <a href="#" class="text-blue-600 hover:underline">Forgot Password?</a>
             </div>
-            
-            <button type="submit" class="w-full mt-4 bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">Log in</button>
+
+            <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center">
+                Sign In
+                <i class="fas fa-arrow-right ml-2"></i>
+            </button>
         </form>
-        
-        <p class="mt-4 text-center text-gray-600">Don’t have an account? <a href="#" class="text-blue-500 hover:underline">Sign up</a></p>
-        
-        <div class="flex items-center my-4">
+
+        <p class="mt-6 text-center text-sm text-gray-600">
+            Don't have an account? 
+            <a href="#" class="text-blue-600 font-semibold hover:underline">Sign Up</a>
+        </p>
+
+        <div class="flex items-center my-6">
             <hr class="flex-grow border-gray-300">
-            <span class="px-3 text-gray-500">OR</span>
+            <span class="px-3 text-sm text-gray-500">OR</span>
             <hr class="flex-grow border-gray-300">
         </div>
-        
-        <button class="w-full flex items-center justify-center py-2 border rounded-lg hover:bg-gray-100">
-            <img src="https://www.svgrepo.com/show/355037/google.svg" class="w-5 h-5 mr-2" alt="Google logo">
+
+        <button class="google-btn w-full flex items-center justify-center py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+            <img src="https://www.svgrepo.com/show/355037/google.svg" alt="Google" class="w-5 h-5 mr-2">
             Continue with Google
         </button>
-        
-        <p class="mt-4 text-xs text-center text-gray-500">By signing in you agree to the <a href="#" class="text-blue-500 hover:underline">Terms of Use</a>, <a href="#" class="text-blue-500 hover:underline">Privacy Policy</a> and <a href="#" class="text-blue-500 hover:underline">Cookie Policy</a>.</p>
+
+        <p class="mt-6 text-xs text-center text-gray-500">
+            By signing in, you agree to our 
+            <a href="#" class="text-blue-600 hover:underline">Terms</a>, 
+            <a href="#" class="text-blue-600 hover:underline">Privacy Policy</a>, and 
+            <a href="#" class="text-blue-600 hover:underline">Cookie Policy</a>
+        </p>
     </div>
+
+    <script>
+        // Password toggle functionality
+        const passwordToggle = document.querySelector('.password-toggle');
+        const passwordInput = document.querySelector('#password');
+
+        passwordToggle.addEventListener('click', () => {
+            const isPassword = passwordInput.type === 'password';
+            passwordInput.type = isPassword ? 'text' : 'password';
+            passwordToggle.querySelector('i').classList.toggle('fa-eye');
+            passwordToggle.querySelector('i').classList.toggle('fa-eye-slash');
+        });
+
+        // Form submission handling
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const remember = document.querySelector('input[name="remember"]').checked;
+
+            // Client-side validation
+            if (!email || !password) {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                alert('Please enter a valid email address');
+                return;
+            }
+
+            if (password.length < 6) {
+                alert('Password must be at least 6 characters long');
+                return;
+            }
+
+            // Demo submission
+            const loginData = { email, password, remember };
+            console.log('Login attempted:', loginData);
+            alert(`Login successful!\nEmail: ${email}\nRemember me: ${remember}`);
+            // In a real app, you'd redirect here: window.location.href = '/dashboard';
+        });
+
+        // Google button demo
+        document.querySelector('.google-btn').addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('Google sign-in would be implemented here');
+        });
+    </script>
 </body>
 </html>
