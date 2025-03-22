@@ -3,74 +3,266 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="RMP Minds - Remote medical assistance and health tracking">
+    <meta name="keywords" content="telemedicine, health tracking, remote consultations">
+    <meta name="author" content="RMP Minds Team">
     <title>RMP Minds</title>
     <link rel="stylesheet" href="output.css">
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-100 font-poppins antialiased transition-colors duration-300" id="body">
 
     <!-- Header -->
-    <header class="h-20 w-full fixed top-0 left-0 border-b-2 border-green-900 flex items-center justify-between backdrop-blur-md bg-green-950/80 shadow-lg z-50 px-6">
-        <h1 class="font-serif text-4xl text-white">RMP Minds</h1>
-        <nav class="flex items-center space-x-6">
-            <a href="#" class="text-white hover:text-green-300 transition duration-300">Home</a>
-            <a href="#about" class="text-white hover:text-green-300 transition duration-300">About</a>
-            <a href="#services" class="text-white hover:text-green-300 transition duration-300">Services</a>
-            <a href="#contact" class="text-white hover:text-green-300 transition duration-300">Contact</a>
-            <a href="login.html" class="bg-green-500 text-white px-6 py-2 rounded-full hover:bg-green-600 transition duration-300 transform hover:scale-105">Login</a>
+    <header class="h-20 w-full fixed top-0 left-0 border-b-2 border-green-900 flex items-center justify-between backdrop-blur-md bg-green-950/80 shadow-lg z-50 px-6" role="banner">
+        <h1 class="font-serif text-4xl text-white"><a href="/" aria-label="RMP Minds Home">RMP Minds</a></h1>
+        <nav class="hidden md:flex items-center space-x-6" role="navigation" aria-label="Main navigation">
+            <a href="#" class="text-white hover:text-green-300 transition duration-300 focus:outline-none focus:ring-2 focus:ring-green-300" aria-label="Home">Home</a>
+            <a href="#about" class="text-white hover:text-green-300 transition duration-300 focus:outline-none focus:ring-2 focus:ring-green-300">About</a>
+            <a href="#services" class="text-white hover:text-green-300 transition duration-300 focus:outline-none focus:ring-2 focus:ring-green-300">Services</a>
+            <a href="#contact" class="text-white hover:text-green-300 transition duration-300 focus:outline-none focus:ring-2 focus:ring-green-300">Contact</a>
+            <a href="login.html" class="bg-green-500 text-white px-6 py-2 rounded-full hover:bg-green-600 transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500">Login</a>
         </nav>
+        <div class="flex items-center space-x-4">
+            <button id="theme-toggle" class="text-white focus:outline-none" aria-label="Toggle dark mode">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" id="sun-icon">
+                    <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                </svg>
+                <svg class="w-6 h-6 hidden" fill="currentColor" viewBox="0 0 24 24" id="moon-icon">
+                    <path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                </svg>
+            </button>
+            <button class="md:hidden text-white focus:outline-none" aria-label="Toggle menu" id="menu-toggle">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
     </header>
 
-    <!-- Hero Section -->
-    <main class="pt-24 flex flex-col items-center justify-center text-center min-h-screen px-6">
-        <h2 class="text-5xl font-bold text-green-900">Your Health, Our Priority</h2>
-        <p class="text-lg text-gray-700 mt-4 max-w-2xl">
-            RMP Minds provides quick and reliable remote medical assistance, prescriptions, and health tracking. Stay healthy with expert recommendations at your fingertips.
-        </p>
-        <a href="services.html" class="mt-6 bg-green-600 text-white px-8 py-3 rounded-full hover:bg-green-700 transition duration-300 transform hover:scale-105">
-            Get Started
-        </a>
+    <!-- Hero Section with Video Background -->
+    <main class="pt-24 flex flex-col items-center justify-center text-center min-h-screen px-6 relative">
+        <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-0 opacity-50 dark:opacity-70" poster="https://via.placeholder.com/1920x1080" aria-hidden="true">
+            <source src="video2.MOV" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="relative z-10 flex flex-col items-center justify-center h-full">
+            <h2 class="text-5xl font-bold text-green-900">Your Health, Our Priority</h2>
+            <p class="text-lg text-white mt-4 max-w-2xl">
+                RMP Minds provides quick and reliable remote medical assistance, prescriptions, and health tracking. Stay healthy with expert recommendations at your fingertips.
+            </p>
+            <a href="services.html" class="mt-6 bg-green-600 text-white px-8 py-3 rounded-full hover:bg-green-700 transition duration-300 transform hover:scale-105">
+                Get Started
+            </a>
+        </div>
     </main>
 
-    <!-- About Section -->
-    <section id="about" class="bg-white py-16 px-6 text-center">
-        <h2 class="text-4xl font-bold text-green-900">About RMP Minds</h2>
-        <p class="text-lg text-gray-700 mt-4 max-w-3xl mx-auto">
-            RMP Minds is a digital platform designed to bridge the gap between patients and remote medical professionals. Our AI-driven system allows users to input health details and receive expert advice instantly.
-        </p>
-    </section>
-
-    <!-- Features Section -->
-    <section id="services" class="bg-gray-50 py-16 px-6 text-center">
-        <h2 class="text-4xl font-bold text-green-900">Our Services</h2>
-        <div class="flex flex-wrap justify-center gap-8 mt-8">
-            <div class="bg-white shadow-lg p-6 rounded-lg w-80 hover:scale-105 transition">
-                <h3 class="text-2xl font-semibold text-green-800">Remote Consultations</h3>
-                <p class="text-gray-600 mt-2">Talk to certified medical professionals from anywhere.</p>
-            </div>
-            <div class="bg-white shadow-lg p-6 rounded-lg w-80 hover:scale-105 transition">
-                <h3 class="text-2xl font-semibold text-green-800">AI-Powered Prescriptions</h3>
-                <p class="text-gray-600 mt-2">Receive AI-suggested prescriptions based on symptoms.</p>
-            </div>
-            <div class="bg-white shadow-lg p-6 rounded-lg w-80 hover:scale-105 transition">
-                <h3 class="text-2xl font-semibold text-green-800">Health Monitoring</h3>
-                <p class="text-gray-600 mt-2">Track vital signs like pulse, weight, and BMI.</p>
+    <!-- About Section with Subtle Video -->
+    <section id="about" class="relative bg-white dark:bg-gray-800 py-16 px-6 text-center" aria-labelledby="about-heading">
+        <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-0 opacity-20 dark:opacity-30" poster="https://via.placeholder.com/1920x1080" aria-hidden="true">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-soft-blue-and-white-waves-528-large.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="relative z-10 animate-on-scroll">
+            <h2 id="about-heading" class="text-4xl font-bold text-green-900 dark:text-green-200">About RMP Minds</h2>
+            <div class="max-w-5xl mx-auto mt-8 flex flex-col md:flex-row items-center gap-8">
+                <p class="text-lg text-gray-700 dark:text-gray-300 flex-1">
+                    RMP Minds is a digital platform designed to bridge the gap between patients and remote medical professionals. Our AI-driven system allows users to input health details and receive expert advice instantly.
+                </p>
+                <div class="flex-1 max-w-md">
+                    <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="Medical professional using RMP Minds" 
+                         class="w-full h-auto rounded-lg shadow-md object-cover">
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="bg-green-900 text-white py-16 text-center">
-        <h2 class="text-4xl font-bold">Get in Touch</h2>
-        <p class="text-lg mt-4">Have questions? Reach out to us anytime.</p>
-        <a href="mailto:info@rmpminds.com" class="mt-6 inline-block bg-white text-green-900 px-6 py-3 rounded-full font-bold hover:bg-gray-300 transition">
-            Contact Us
-        </a>
+    <!-- Services Section -->
+    <section id="services" class="bg-gray-50 dark:bg-gray-700 py-16 px-6 text-center" aria-labelledby="services-heading">
+        <h2 id="services-heading" class="text-4xl font-bold text-green-900 dark:text-green-200 animate-on-scroll">Our Services</h2>
+        <div class="flex flex-wrap justify-center gap-8 mt-8">
+            <div class="bg-white dark:bg-gray-800 shadow-lg p-6 rounded-lg w-80 hover:scale-105 transition animate-on-scroll">
+                <svg class="w-12 h-12 mx-auto text-green-800 dark:text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5v-4a2 2 0 012-2h10a2 2 0 012 2v4h-4M12 16h.01"></path>
+                </svg>
+                <h3 class="text-2xl font-semibold text-green-800 dark:text-green-200 mt-4">Remote Consultations</h3>
+                <p class="text-gray-600 dark:text-gray-300 mt-2">Talk to certified medical professionals from anywhere.</p>
+            </div>
+            <div class="bg-white dark:bg-gray-800 shadow-lg p-6 rounded-lg w-80 hover:scale-105 transition animate-on-scroll">
+                <svg class="w-12 h-12 mx-auto text-green-800 dark:text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                </svg>
+                <h3 class="text-2xl font-semibold text-green-800 dark:text-green-200 mt-4">AI-Powered Prescriptions</h3>
+                <p class="text-gray-600 dark:text-gray-300 mt-2">Receive AI-suggested prescriptions based on symptoms.</p>
+            </div>
+            <div class="bg-white dark:bg-gray-800 shadow-lg p-6 rounded-lg w-80 hover:scale-105 transition animate-on-scroll">
+                <svg class="w-12 h-12 mx-auto text-green-800 dark:text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                </svg>
+                <h3 class="text-2xl font-semibold text-green-800 dark:text-green-200 mt-4">Health Monitoring</h3>
+                <p class="text-gray-600 dark:text-gray-300 mt-2">Track vital signs like pulse, weight, and BMI.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="bg-white dark:bg-gray-800 py-16 px-6 text-center" aria-labelledby="testimonials-heading">
+        <h2 id="testimonials-heading" class="text-4xl font-bold text-green-900 dark:text-green-200 animate-on-scroll">What Our Users Say</h2>
+        <div class="flex flex-wrap justify-center gap-8 mt-8">
+            <blockquote class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg w-80 shadow-md animate-on-scroll">
+                <p class="text-gray-700 dark:text-gray-300">"RMP Minds saved me a trip to the doctor with their quick consultation!"</p>
+                <cite class="block mt-2 text-green-800 dark:text-green-300 font-semibold">- Sarah M.</cite>
+            </blockquote>
+            <blockquote class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg w-80 shadow-md animate-on-scroll">
+                <p class="text-gray-700 dark:text-gray-300">"The health tracking feature keeps me motivated every day."</p>
+                <cite class="block mt-2 text-green-800 dark:text-green-300 font-semibold">- John D.</cite>
+            </blockquote>
+        </div>
+    </section>
+
+    <!-- Contact Section with Video Background -->
+    <section id="contact" class="relative bg-green-900 dark:bg-green-950 text-white py-16 text-center" aria-labelledby="contact-heading">
+        <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-0 opacity-30" poster="https://via.placeholder.com/1920x1080" aria-hidden="true">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-green-and-blue-ink-swirls-in-water-527-large.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="relative z-10 animate-on-scroll">
+            <h2 id="contact-heading" class="text-4xl font-bold">Get in Touch</h2>
+            <p class="text-lg mt-4">Have questions? Reach out to us anytime.</p>
+            <form class="max-w-lg mx-auto mt-8 space-y-4">
+                <input type="text" placeholder="Your Name" class="w-full p-3 rounded-lg bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-300" required aria-label="Name">
+                <input type="email" placeholder="Your Email" class="w-full p-3 rounded-lg bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-300" required aria-label="Email">
+                <textarea placeholder="Your Message" rows="4" class="w-full p-3 rounded-lg bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-300" required aria-label="Message"></textarea>
+                <button type="submit" class="bg-white text-green-900 dark:bg-green-700 dark:text-white px-6 py-3 rounded-full font-bold hover:bg-gray-300 dark:hover:bg-green-600 transition focus:outline-none focus:ring-2 focus:ring-white">Send Message</button>
+            </form>
+        </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-green-950 text-white text-center py-4">
-        <p>&copy; 2025 RMP Minds. All rights reserved.</p>
+    <footer class="bg-green-950 dark:bg-gray-900 text-white text-center py-6" role="contentinfo">
+        <div class="flex justify-center gap-6 mb-4 animate-on-scroll">
+            <a href="#" aria-label="Twitter" class="hover:text-green-300 transition"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path></svg></a>
+            <a href="#" aria-label="Facebook" class="hover:text-green-300 transition"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path></svg></a>
+        </div>
+        <p class="animate-on-scroll">© 2025 RMP Minds. All rights reserved.</p>
     </footer>
 
+    <!-- Scroll to Top Button with Progress Indicator -->
+<div class="fixed bottom-6 right-6 z-50">
+    <!-- Circular Progress Indicator (Background) -->
+    <svg class="w-14 h-14" viewBox="0 0 36 36">
+        <path class="stroke-current text-green-200 opacity-50" fill="none" stroke-width="2" d="M18 2.0845
+            a 15.9155 15.9155 0 0 1 0 31.831
+            a 15.9155 15.9155 0 0 1 0 -31.831" />
+        <path id="scroll-progress" class="stroke-current text-green-600" fill="none" stroke-width="2" stroke-linecap="round" d="M18 2.0845
+            a 15.9155 15.9155 0 0 1 0 31.831
+            a 15.9155 15.9155 0 0 1 0 -31.831" style="stroke-dasharray: 100; stroke-dashoffset: 100;" />
+    </svg>
+    
+    <!-- Scroll to Top Button -->
+    <button id="scroll-top" 
+            class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
+                   bg-green-600 text-white p-3 rounded-full shadow-lg hover:bg-green-700 
+                   transition duration-300 ease-in-out hover:scale-110 hidden animate-bounce-slow" 
+            aria-label="Scroll to top">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+        </svg>
+    </button>
+</div>
+
+    <!-- Live Chat Widget -->
+    <div id="chat-widget" class="fixed bottom-6 left-6 bg-green-600 text-white p-4 rounded-lg shadow-lg cursor-pointer hover:bg-green-700 transition duration-300 animate-on-scroll">
+        <span>Chat with Us</span>
+        <div id="chat-box" class="hidden absolute bottom-16 left-0 bg-white dark:bg-gray-800 text-gray-900 dark:text-white p-4 rounded-lg shadow-lg w-64">
+            <p class="text-sm">Hi! How can we assist you today?</p>
+            <input type="text" placeholder="Type a message..." class="w-full mt-2 p-2 rounded-lg border dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-green-300" aria-label="Chat input">
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const nav = document.querySelector('nav');
+        menuToggle.addEventListener('click', () => {
+            nav.classList.toggle('hidden');
+            nav.classList.toggle('md:flex');
+        });
+
+        // Dark Mode Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.getElementById('body');
+        const sunIcon = document.getElementById('sun-icon');
+        const moonIcon = document.getElementById('moon-icon');
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark');
+            sunIcon.classList.toggle('hidden');
+            moonIcon.classList.toggle('hidden');
+            localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
+        });
+        if (localStorage.getItem('theme') === 'dark') {
+            body.classList.add('dark');
+            sunIcon.classList.add('hidden');
+            moonIcon.classList.remove('hidden');
+        }
+
+        // Scroll to Top
+        const scrollTop = document.getElementById('scroll-top');
+        window.addEventListener('scroll', () => {
+            scrollTop.classList.toggle('hidden', window.scrollY < 300);
+        });
+        scrollTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Chat Widget Toggle
+        const chatWidget = document.getElementById('chat-widget');
+        const chatBox = document.getElementById('chat-box');
+        chatWidget.addEventListener('click', () => {
+            chatBox.classList.toggle('hidden');
+        });
+
+        // Scrolling Animation
+        const elements = document.querySelectorAll('.animate-on-scroll');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in-up');
+                    observer.unobserve(entry.target); // Stop observing once animated
+                }
+            });
+        }, { threshold: 0.3 }); // Trigger when 30% of element is visible
+
+        elements.forEach(element => observer.observe(element));
+    </script>
+
+    <!-- CSS -->
+    <style>
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in-down { animation: fadeInDown 0.8s ease-out; }
+        .animate-on-scroll { opacity: 0; } /* Initial state */
+        .animate-on-scroll.animate-fade-in-up { animation: fadeInUp 0.8s ease-out forwards; }
+        .dark { background-color: #1f2937; }
+        @media (max-width: 768px) {
+            nav { 
+                display: none; 
+                position: absolute; 
+                top: 100%; 
+                left: 0; 
+                right: 0; 
+                background: rgba(5, 46, 22, 0.95); 
+                flex-direction: column; 
+                padding: 1rem; 
+            }
+            nav a { margin: 0.5rem 0; }
+        }
+    </style>
 </body>
 </html>
