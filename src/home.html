@@ -49,7 +49,7 @@
             <p class="text-lg text-white mt-4 max-w-2xl">
                 RMP Minds provides quick and reliable remote medical assistance, prescriptions, and health tracking. Stay healthy with expert recommendations at your fingertips.
             </p>
-            <a href="services.html" class="mt-6 bg-green-600 text-white px-8 py-3 rounded-full hover:bg-green-700 transition duration-300 transform hover:scale-105">
+            <a href="http://127.0.0.1:5500/project/src/domy.html" class="mt-6 bg-green-600 text-white px-8 py-3 rounded-full hover:bg-green-700 transition duration-300 transform hover:scale-105">
                 Get Started
             </a>
         </div>
@@ -171,13 +171,16 @@
 </div>
 
     <!-- Live Chat Widget -->
-    <div id="chat-widget" class="fixed bottom-6 left-6 bg-green-600 text-white p-4 rounded-lg shadow-lg cursor-pointer hover:bg-green-700 transition duration-300 animate-on-scroll">
-        <span>Chat with Us</span>
-        <div id="chat-box" class="hidden absolute bottom-16 left-0 bg-white dark:bg-gray-800 text-gray-900 dark:text-white p-4 rounded-lg shadow-lg w-64">
-            <p class="text-sm">Hi! How can we assist you today?</p>
-            <input type="text" placeholder="Type a message..." class="w-full mt-2 p-2 rounded-lg border dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-green-300" aria-label="Chat input">
-        </div>
-    </div>
+<div id="chat-widget" class="fixed bottom-6 left-6 bg-green-600 text-white p-4 rounded-lg shadow-lg cursor-pointer hover:bg-green-700 transition duration-300 animate-on-scroll">
+    <span    > <a href="./Chat-bot/index.html" target="_blank"> Chat with AI  </a>  </span>
+</div>
+
+<!-- Chatbox -->
+<!-- <div id="chat-box" class="hidden absolute bottom-16 left-0 bg-white dark:bg-gray-800 text-gray-900 dark:text-white p-4 rounded-lg shadow-lg w-64">
+    <p class="text-sm">Hi! How can we assist you today?</p>
+    <input type="text" placeholder="Type a message..." class="w-full mt-2 p-2 rounded-lg border dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-green-300" aria-label="Chat input">
+    
+</div> -->
 
     <!-- JavaScript -->
     <script>
@@ -215,12 +218,12 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        // Chat Widget Toggle
-        const chatWidget = document.getElementById('chat-widget');
-        const chatBox = document.getElementById('chat-box');
-        chatWidget.addEventListener('click', () => {
-            chatBox.classList.toggle('hidden');
-        });
+         // Chat Widget Toggle
+    const chatWidget = document.getElementById('chat-widget');
+    const chatBox = document.getElementById('chat-box');
+    chatWidget.addEventListener('click', () => {
+        chatBox.classList.toggle('hidden');
+    });
 
         // Scrolling Animation
         const elements = document.querySelectorAll('.animate-on-scroll');
