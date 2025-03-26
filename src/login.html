@@ -7,74 +7,80 @@
     <link rel="stylesheet" href="output.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
-<body class="min-h-screen bg-gradient-to-br from-blue-50 to-gray-100 flex items-center justify-center p-4">
-    <div class="w-full max-w-md bg-white rounded-xl shadow-md p-6 sm:p-8 transition-all hover:shadow-lg">
+<body class="min-h-screen bg-[#4A5E3F] from-blue-50 to-gray-100 flex items-center justify-center p-4">
+    <div class="flex items-center justify-center w-1/2 h-screen">
+        <a href="home.html" class="block w-full max-w-xs">
+            <img src="image.png" alt="RMP Minds Logo" class="h-24 w-full object-contain mx-auto rounded-4xl">
+        </a>
+    </div>
+    
+    <div class="w-full max-w-xl bg-[#F5F5E9] rounded-xl shadow-md p-8 sm:p-8 mr-25 transition-all hover:shadow-lg">
         <div class="text-center mb-8">
-            <h1 class="text-3xl font-bold text-gray-800">
-                <span class="text-blue-600 text-4xl">R</span>MD Minds
+            <h1 class="text-3xl font-bold text-[#2A3A2F]">
+                <span class="text-[#4A5E3F] text-4xl">Hello again!</span>Let’s get started
             </h1>
-            <p class="text-gray-600 mt-2">Sign in to your account</p>
+            <p class="text-[#2A3A2F] mt-2">Sign in to your account</p>
         </div>
-
+    
         <form id="loginForm" class="space-y-6">
             <div>
-                <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+                <label for="email" class="block text-sm font-medium text-[#2A3A2F]">Email Address</label>
                 <div class="mt-1 relative">
-                    <input type="email" id="email"  name="email" placeholder="your@email.com" 
-                           class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all" 
+                    <input type="email" id="email" name="email" placeholder="your@email.com" 
+                           class="w-full pl-10 pr-4 py-3 border border-[#D4A76A] rounded-lg focus:ring-2 focus:ring-[#4A5E3F] focus:border-[#4A5E3F] transition-all" 
                            required>
-                    <i class="fas fa-envelope absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
+                    <i class="fas fa-envelope absolute left-3 top-1/2 transform -translate-y-1/2 text-[#2A3A2F]"></i>
                 </div>
             </div>
-
+    
             <div>
-                <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                <label for="password" class="block text-sm font-medium text-[#2A3A2F]">Password</label>
                 <div class="mt-1 relative">
                     <input type="password" id="password" name="password" placeholder="••••••••" 
-                           class="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all" 
+                           class="w-full pl-10 pr-12 py-3 border border-[#D4A76A] rounded-lg focus:ring-2 focus:ring-[#4A5E3F] focus:border-[#4A5E3F] transition-all" 
                            required>
-                    <i class="fas fa-lock absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
-                    <button type="button" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 password-toggle">
+                    <i class="fas fa-lock absolute left-3 top-1/2 transform -translate-y-1/2 text-[#2A3A2F]"></i>
+                    <button type="button" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#2A3A2F] hover:text-[#4A5E3F] password-toggle">
                         <i class="fas fa-eye"></i>
                     </button>
                 </div>
             </div>
-
+    
             <div class="flex items-center justify-between text-sm">
                 <label class="flex items-center">
-                    <input type="checkbox" name="remember" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
-                    <span class="ml-2 text-gray-600">Remember me</span>
+                    <input type="checkbox" name="remember" class="h-4 w-4 text-[#4A5E3F] focus:ring-[#4A5E3F] border-[#D4A76A] rounded">
+                    <span class="ml-2 text-[#2A3A2F]">Remember me</span>
                 </label>
-                <a href="#" class="text-blue-600 hover:underline">Forgot Password?</a>
+                <a href="#" class="text-[#4A5E3F] hover:underline">Forgot Password?</a>
             </div>
-
-            <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center">
+    
+            <button type="submit" class="w-full bg-[#A66A3C] text-[#F5F5E9] py-3 rounded-lg font-semibold hover:bg-[#D4A76A] transition-colors flex items-center justify-center">
                 Sign In
                 <i class="fas fa-arrow-right ml-2"></i>
             </button>
         </form>
-
-        <p class="mt-6 text-center text-sm text-gray-600">
+    
+        <p class="mt-6 text-center text-sm text-[#2A3A2F]">
             Don't have an account? 
-            <a href="#" class="text-blue-600 font-semibold hover:underline">Sign Up</a>
+            <a href="#" class="text-[#4A5E3F] font-semibold hover:underline">Sign Up</a>
         </p>
-
+    
         <div class="flex items-center my-6">
-            <hr class="flex-grow border-gray-300">
-            <span class="px-3 text-sm text-gray-500">OR</span>
-            <hr class="flex-grow border-gray-300">
+            <hr class="flex-grow border-[#D4A76A]">
+            <span class="px-3 text-sm text-[#2A3A2F]">OR</span>
+            <hr class="flex-grow border-[#D4A76A]">
         </div>
-
-        <button class="google-btn w-full flex items-center justify-center py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+    
+        <button class="google-btn w-full flex items-center justify-center py-3 border border-[#D4A76A] rounded-lg hover:bg-[#F5F5E9] transition-colors">
             <img src="https://www.svgrepo.com/show/355037/google.svg" alt="Google" class="w-5 h-5 mr-2">
             Continue with Google
         </button>
-
-        <p class="mt-6 text-xs text-center text-gray-500">
+    
+        <p class="mt-6 text-xs text-center text-[#2A3A2F]">
             By signing in, you agree to our 
-            <a href="#" class="text-blue-600 hover:underline">Terms</a>, 
-            <a href="#" class="text-blue-600 hover:underline">Privacy Policy</a>, and 
-            <a href="#" class="text-blue-600 hover:underline">Cookie Policy</a>
+            <a href="#" class="text-[#4A5E3F] hover:underline">Terms</a>, 
+            <a href="#" class="text-[#4A5E3F] hover:underline">Privacy Policy</a>, and 
+            <a href="#" class="text-[#4A5E3F] hover:underline">Cookie Policy</a>
         </p>
     </div>
 
