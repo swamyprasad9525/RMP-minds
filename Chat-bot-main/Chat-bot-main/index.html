@@ -1,32 +1,44 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Chat Bot</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
+    <div class="chat-header">
+        <h2>AI Assistant</h2>
+        <div class="status-indicator online"></div>
+    </div>
+    
     <div class="chat-container">
         <div class="ai-chat-box">
-            <img src="img/ai.png" alt="" id="aiImage" width="10%">
+            <img src="img/ai.png" alt="AI Avatar" id="aiImage" class="avatar">
             <div class="ai-chat-area">
-                Hello! How Can I Help you Today?
+                <span class="message">Hello! How Can I Help you Today?</span>
+                <span class="timestamp">Just now</span>
             </div>
         </div>
     </div>
     
     <div class="prompt-area">
-        <button id="voice"><img src="img/mic.png" alt="Voice"></button>
-        <input type="text" id="prompt" placeholder="Type a message...">
-        <button id="image">
-            <img src="img/img.svg" alt="Upload">
-            <input type="file" accept="image/*" hidden>
+        <button id="voice" title="Voice Input"><i class="fas fa-microphone"></i></button>
+        <input type="text" id="prompt" placeholder="Type a message..." spellcheck="true">
+        <button id="image" title="Upload Image">
+            <i class="fas fa-image"></i>
+            <input type="file" accept="image/*, .pdf" hidden multiple>
         </button>
-        <button id="submit"><img src="img/submit.svg" alt="Send"></button>
+        <button id="submit" title="Send Message"><i class="fas fa-paper-plane"></i></button>
+    </div>
+    
+    <div class="theme-toggle">
+        <button id="theme-btn" title="Toggle Theme">
+            <i class="fas fa-adjust"></i>
+        </button>
     </div>
     
     <script src="script.js"></script>  
 </body>
-</html> 
-
+</html>

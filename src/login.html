@@ -22,11 +22,11 @@
             <p class="text-[#2A3A2F] mt-2">Sign in to your account</p>
         </div>
     
-        <form id="loginForm" class="space-y-6">
+        <form id="loginForm" class="space-y-6" action="login1.php" method="POST">
             <div>
                 <label for="email" class="block text-sm font-medium text-[#2A3A2F]">Email Address</label>
                 <div class="mt-1 relative">
-                    <input type="email" id="email" name="email" placeholder="your@email.com" 
+                    <input type="email" id="email" name="email" placeholder="Email" 
                            class="w-full pl-10 pr-4 py-3 border border-[#D4A76A] rounded-lg focus:ring-2 focus:ring-[#4A5E3F] focus:border-[#4A5E3F] transition-all" 
                            required>
                     <i class="fas fa-envelope absolute left-3 top-1/2 transform -translate-y-1/2 text-[#2A3A2F]"></i>
@@ -84,7 +84,7 @@
         </p>
     </div>
 
-    <script>
+     <script>
         // Password toggle functionality
         const passwordToggle = document.querySelector('.password-toggle');
         const passwordInput = document.querySelector('#password');
@@ -95,43 +95,7 @@
             passwordToggle.querySelector('i').classList.toggle('fa-eye');
             passwordToggle.querySelector('i').classList.toggle('fa-eye-slash');
         });
-
-        // Form submission handling
-        document.getElementById('loginForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            const email = document.getElementById('email').value.trim();
-            const password = document.getElementById('password').value;
-            const remember = document.querySelector('input[name="remember"]').checked;
-
-            // Client-side validation
-            if (!email || !password) {
-                alert('Please fill in all fields');
-                return;
-            }
-
-            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                alert('Please enter a valid email address');
-                return;
-            }
-
-            if (password.length < 6) {
-                alert('Password must be at least 6 characters long');
-                return;
-            }
-
-            // Demo submission
-            const loginData = { email, password, remember };
-            console.log('Login attempted:', loginData);
-            alert(`Login successful!\nEmail: ${email}\nRemember me: ${remember}`);
-            // In a real app, you'd redirect here: window.location.href = '/dashboard';
-        });
-
-        // Google button demo
-        document.querySelector('.google-btn').addEventListener('click', (e) => {
-            e.preventDefault();
-            alert('Google sign-in would be implemented here');
-        });
-    </script>
+       
+    </script> 
 </body>
 </html>
