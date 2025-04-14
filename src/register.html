@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RMP MINDS | Register</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .title-font {
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .hero-section {
+            background-image: url('https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3431&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+        }
+        
+        .hero-overlay {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.85) 0%, rgba(16, 185, 129, 0.85) 100%);
+        }
+        
+        .register-container {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes scaleIn {
+            from { transform: scale(0.95); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        
+        .animate-scale-in {
+            animation: scaleIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+        
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        
+        .input-highlight {
+            transition: all 0.3s ease;
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0);
+        }
+        
+        .input-highlight:focus {
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+        }
+        
+        .btn-3d {
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+        }
+        
+        .btn-3d:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
+        }
+        
+        .btn-3d:active {
+            transform: translateY(1px);
+        }
+        
+        .social-btn {
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+        }
+        
+        .social-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+        }
+        
+        .logo-text {
+            font-size: 1.75rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #3b82f6 0%, #10b981 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 1px;
+        }
+        
+        .password-strength {
+            height: 4px;
+            background-color: #e5e7eb;
+            border-radius: 2px;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+        
+        .password-strength-bar {
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease, background-color 0.3s ease;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <div class="flex flex-col lg:flex-row min-h-screen">
+        <!-- Full-screen 3D Hero Section -->
+        <div class="w-full lg:w-1/2 hero-section flex items-center justify-center min-h-[50vh] lg:min-h-screen">
+            <div class="hero-overlay absolute inset-0"></div>
+            
+            <div class="relative z-10 text-center p-8 max-w-2xl">
+                <h1 class="title-font text-5xl md:text-6xl font-black text-white mb-6 animate-fade-in">
+                    TRANSFORM YOUR <span class="text-yellow-300">BODY</span>
+                </h1>
+                <p class="text-xl text-blue-100 mb-8 animate-fade-in delay-100">
+                    Begin your fitness journey with our expert guidance
+                </p>
+                
+                <div class="flex justify-center space-x-6 animate-fade-in delay-200">
+                    <div class="bg-white bg-opacity-20 p-4 rounded-full backdrop-blur-sm transition-all duration-300 hover:bg-opacity-30 animate-float" style="animation-delay: 0s;">
+                        <i class="fas fa-dumbbell text-2xl text-white"></i>
+                    </div>
+                    <div class="bg-white bg-opacity-20 p-4 rounded-full backdrop-blur-sm transition-all duration-300 hover:bg-opacity-30 animate-float" style="animation-delay: 1s;">
+                        <i class="fas fa-heartbeat text-2xl text-white"></i>
+                    </div>
+                    <div class="bg-white bg-opacity-20 p-4 rounded-full backdrop-blur-sm transition-all duration-300 hover:bg-opacity-30 animate-float" style="animation-delay: 2s;">
+                        <i class="fas fa-running text-2xl text-white"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Full-screen Register Section -->
+        <div class="w-full lg:w-1/2 flex items-center justify-center">
+            <div class="register-container w-full max-w-md">
+                <div class="text-center mb-10">
+                    <div class="flex flex-col items-center mb-6">
+                        <div class="bg-gradient-to-r from-blue-500 to-teal-400 p-2 rounded-full animate-fade-in">
+                            <div class="bg-white p-2 rounded-full">
+                                <i class="fas fa-brain text-blue-500 text-3xl"></i>
+                            </div>
+                        </div>
+                        <h1 class="logo-text mt-4 animate-fade-in delay-100">RMP MINDS</h1>
+                    </div>
+                    <h2 class="title-font text-3xl font-bold text-gray-800 mb-2 animate-fade-in delay-200">CREATE ACCOUNT</h2>
+                    <p class="text-gray-600 animate-fade-in delay-300">Start your fitness transformation today</p>
+                </div>
+
+                <form class="space-y-4" id="registerForm">
+                    <div class="grid grid-cols-2 gap-4 animate-fade-in delay-100">
+                        <div>
+                            <label for="firstName" class="block text-sm font-medium text-gray-700 mb-2">First Name</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+                                    <i class="far fa-user"></i>
+                                </div>
+                                <input type="text" id="firstName" name="firstName" 
+                                       class="input-highlight w-full pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 transition-all duration-300" 
+                                       placeholder="Rishu" required>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="lastName" class="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+                                    <i class="far fa-user"></i>
+                                </div>
+                                <input type="text" id="lastName" name="lastName" 
+                                       class="input-highlight w-full pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 transition-all duration-300" 
+                                       placeholder="Pandey" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="animate-fade-in delay-200">
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+                                <i class="far fa-envelope"></i>
+                            </div>
+                            <input type="email" id="email" name="email" 
+                                   class="input-highlight w-full pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 transition-all duration-300" 
+                                   placeholder="your@email.com" required>
+                        </div>
+                    </div>
+
+                    <div class="animate-fade-in delay-300">
+                        <label for="password" class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                            <input type="password" id="password" name="password" 
+                                   class="input-highlight w-full pl-10 pr-12 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 transition-all duration-300" 
+                                   placeholder="••••••••" required>
+                            <button type="button" id="togglePassword" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-blue-500 transition-colors duration-200">
+                                <i class="far fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="password-strength">
+                            <div id="passwordStrengthBar" class="password-strength-bar"></div>
+                        </div>
+                        <p id="passwordStrengthText" class="text-xs text-gray-500 mt-1"></p>
+                    </div>
+
+                    <div class="animate-fade-in delay-400">
+                        <label for="confirmPassword" class="block text-sm font-medium text-gray-700 mb-2">Confirm Password</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                            <input type="password" id="confirmPassword" name="confirmPassword" 
+                                   class="input-highlight w-full pl-10 pr-12 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 transition-all duration-300" 
+                                   placeholder="••••••••" required>
+                            <button type="button" id="toggleConfirmPassword" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-blue-500 transition-colors duration-200">
+                                <i class="far fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center animate-fade-in delay-500">
+                        <input id="terms" name="terms" type="checkbox" 
+                               class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                        <label for="terms" class="ml-2 block text-sm text-gray-700">
+                            I agree to the <a href="#" class="font-medium text-blue-600 hover:text-blue-500 transition-colors duration-200">Terms of Service</a> and <a href="#" class="font-medium text-blue-600 hover:text-blue-500 transition-colors duration-200">Privacy Policy</a>
+                        </label>
+                    </div>
+
+                    <button type="submit" 
+                            class="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-xl text-lg font-medium text-white bg-gradient-to-r from-blue-600 to-blue-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 btn-3d animate-fade-in delay-600">
+                        <span id="button-text">CREATE ACCOUNT</span>
+                        <i class="fas fa-user-plus ml-2"></i>
+                    </button>
+                </form>
+
+                <div class="mt-8 text-center animate-fade-in delay-700">
+                    <p class="text-sm text-gray-600">
+                        Already have an account? 
+                        <a href="login.html" class="font-medium text-blue-600 hover:text-blue-500 transition-colors duration-200">Sign in</a>
+                    </p>
+                </div>
+                
+                <!-- Social login -->
+                <div class="mt-8 animate-fade-in delay-800">
+                    <div class="relative">
+                        <div class="absolute inset-0 flex items-center">
+                            <div class="w-full border-t border-gray-200"></div>
+                        </div>
+                        <div class="relative flex justify-center">
+                            <span class="px-3 bg-transparent text-sm text-gray-500">Or sign up with</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 grid grid-cols-3 gap-3">
+                        <a href="#" class="social-btn bg-white border border-gray-200 rounded-lg py-3 flex items-center justify-center text-gray-700 hover:bg-gray-50">
+                            <i class="fab fa-google text-red-500 text-xl"></i>
+                        </a>
+                        <a href="#" class="social-btn bg-white border border-gray-200 rounded-lg py-3 flex items-center justify-center text-gray-700 hover:bg-gray-50">
+                            <i class="fab fa-facebook-f text-blue-600 text-xl"></i>
+                        </a>
+                        <a href="#" class="social-btn bg-white border border-gray-200 rounded-lg py-3 flex items-center justify-center text-gray-700 hover:bg-gray-50">
+                            <i class="fab fa-apple text-gray-800 text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Password visibility toggle
+            const togglePassword = document.getElementById('togglePassword');
+            const password = document.getElementById('password');
+            const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
+            const confirmPassword = document.getElementById('confirmPassword');
+            
+            togglePassword.addEventListener('click', function() {
+                const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+                password.setAttribute('type', type);
+                this.innerHTML = type === 'password' ? '<i class="far fa-eye"></i>' : '<i class="far fa-eye-slash"></i>';
+            });
+
+            toggleConfirmPassword.addEventListener('click', function() {
+                const type = confirmPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+                confirmPassword.setAttribute('type', type);
+                this.innerHTML = type === 'password' ? '<i class="far fa-eye"></i>' : '<i class="far fa-eye-slash"></i>';
+            });
+
+            // Password strength indicator
+            password.addEventListener('input', function() {
+                const strengthBar = document.getElementById('passwordStrengthBar');
+                const strengthText = document.getElementById('passwordStrengthText');
+                const strength = calculatePasswordStrength(this.value);
+                
+                strengthBar.style.width = strength.percentage + '%';
+                strengthBar.style.backgroundColor = strength.color;
+                strengthText.textContent = strength.text;
+                strengthText.style.color = strength.color;
+            });
+
+            function calculatePasswordStrength(password) {
+                let strength = 0;
+                let text = '';
+                let color = '#ef4444'; // red
+                
+                // Length check
+                if (password.length > 0) strength += 10;
+                if (password.length >= 8) strength += 20;
+                if (password.length >= 12) strength += 20;
+                
+                // Complexity checks
+                if (/[A-Z]/.test(password)) strength += 10;
+                if (/[0-9]/.test(password)) strength += 10;
+                if (/[^A-Za-z0-9]/.test(password)) strength += 10;
+                
+                // Common password check (simplified)
+                const commonPasswords = ['password', '123456', 'qwerty'];
+                if (!commonPasswords.includes(password.toLowerCase())) strength += 20;
+                
+                // Determine strength level
+                if (strength < 30) {
+                    text = 'Very Weak';
+                    color = '#ef4444'; // red
+                } else if (strength < 60) {
+                    text = 'Weak';
+                    color = '#f59e0b'; // amber
+                } else if (strength < 80) {
+                    text = 'Good';
+                    color = '#10b981'; // emerald
+                } else {
+                    text = 'Strong';
+                    color = '#3b82f6'; // blue
+                }
+                
+                return {
+                    percentage: Math.min(strength, 100),
+                    text: text,
+                    color: color
+                };
+            }
+
+            // Form submission animation
+            const form = document.getElementById('registerForm');
+            const buttonText = document.getElementById('button-text');
+            
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Validate passwords match
+                if (password.value !== confirmPassword.value) {
+                    alert('Passwords do not match!');
+                    return;
+                }
+                
+                // Validate terms checkbox
+                if (!document.getElementById('terms').checked) {
+                    alert('You must agree to the terms and conditions');
+                    return;
+                }
+                
+                const button = form.querySelector('button[type="submit"]');
+                button.disabled = true;
+                buttonText.textContent = 'CREATING ACCOUNT...';
+                button.querySelector('i').className = 'fas fa-spinner fa-spin ml-2';
+                
+                // Simulate API call
+                setTimeout(() => {
+                    buttonText.textContent = 'ACCOUNT CREATED';
+                    button.querySelector('i').className = 'fas fa-check ml-2';
+                    button.classList.remove('from-blue-600', 'to-blue-400');
+                    button.classList.add('from-green-500', 'to-teal-400');
+                    
+                    // Redirect after success (simulated)
+                    setTimeout(() => {
+                        window.location.href = 'dashboard.html';
+                    }, 1000);
+                }, 2000);
+            });
+
+            // Add hover effects to social buttons
+            const socialBtns = document.querySelectorAll('.social-btn');
+            socialBtns.forEach(btn => {
+                btn.addEventListener('mouseenter', () => {
+                    const icon = btn.querySelector('i');
+                    icon.classList.add('fa-bounce');
+                });
+                btn.addEventListener('mouseleave', () => {
+                    const icon = btn.querySelector('i');
+                    icon.classList.remove('fa-bounce');
+                });
+            });
+            
+            // Input focus effects
+            const inputs = document.querySelectorAll('input');
+            inputs.forEach(input => {
+                input.addEventListener('focus', () => {
+                    const icon = input.parentElement.querySelector('i');
+                    if (icon) icon.classList.add('text-blue-500');
+                });
+                input.addEventListener('blur', () => {
+                    const icon = input.parentElement.querySelector('i');
+                    if (icon) icon.classList.remove('text-blue-500');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

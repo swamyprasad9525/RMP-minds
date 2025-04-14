@@ -1,379 +1,335 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="RMP Minds - Remote medical assistance and health tracking">
-    <meta name="keywords" content="telemedicine, health tracking, remote consultations">
-    <meta name="author" content="RMP Minds Team">
-    <title>RMP Minds</title>
-    <link rel="stylesheet" href="output.css">
-    <!-- <style>
-        @import url(https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap);
-        @import url(https://fonts.googleapis.com/css2?family=Open+Sans&display=swap);
-        @import url(https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200);
-    </style> -->
-    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script> -->
-</head>
-<body class="bg-gray-100 font-poppins antialiased transition-colors duration-300" id="body">
-
-    <!-- Header -->
-    <header class="h-20 w-full fixed top-0 left-0 border-b-2 border-green-900 flex items-center justify-between backdrop-blur-lg bg-[#5A6F47] shadow-lg z-50 px-6">
-        <h1 class="font-serif text-4xl text-white flex items-center space-x-3">
-           <a href="home.html"><img src="logo.png" alt="RMP Minds Logo" class="h-14 w-14 rounded-full">
-            </a>
-            <a href="home.html" aria-label="RMP Minds Home">ℝ𝕄ℙ 𝕄𝕀ℕ𝔻𝕊</a>
-        </h1>
-        <nav class="hidden md:flex items-center space-x-6" role="navigation" aria-label="Main navigation">
-            <a href="#" class="text-white hover:text-green-300 transition duration-300 focus:outline-none focus:ring-2 focus:ring-green-300" aria-label="Home">Home</a>
-            <a href="#about" class="text-white hover:text-green-300 transition duration-300 focus:outline-none focus:ring-2 focus:ring-green-300">About</a>
-            <a href="#services" class="text-white hover:text-green-300 transition duration-300 focus:outline-none focus:ring-2 focus:ring-green-300">Services</a>
-            <a href="#contact" class="text-white hover:text-green-300 transition duration-300 focus:outline-none focus:ring-2 focus:ring-green-300">Contact</a>
-            <a href="signup.html" target="_blank" class="bg-[#5A6F47] text-white px-6 py-2 rounded-full hover:bg-[#D4BFA2] transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#D4BFA2] border-2">Sign Up</a>
-            <a href="login.html" target="_blank" class="bg-[#2A3A2F] text-white px-6 py-2 rounded-full hover:bg-[#D4BFA2] transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500">Login</a>
-            
-        </nav>
-        <div class="flex items-center space-x-4">
-            <button id="theme-toggle" class="text-white focus:outline-none" aria-label="Toggle dark mode">
-                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" id="sun-icon">
-                    <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
-                </svg>
-                <svg class="w-6 h-6 hidden" fill="currentColor" viewBox="0 0 24 24" id="moon-icon">
-                    <path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
-                </svg>
+<!doctype html>
+<html lang="en" class="light">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RMP MINDS - AI Health Assistant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              'nav-dark': '#111827',
+              'nav-light': 'rgba(255, 255, 255, 0.8)'
+            }
+          }
+        }
+      }
+    </script>
+  </head>
+  <body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
+    <!-- Navigation Bar -->
+    <nav class="w-full bg-nav-light dark:bg-nav-dark backdrop-blur-md shadow-sm fixed top-0 z-50 transition-colors duration-200">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="flex items-center justify-between h-16">
+          <div class="flex items-center space-x-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-8 w-8 text-blue-600 dark:text-blue-400">
+              <path d="M12 2a8 8 0 0 0-8 8c0 6 8 12 8 12s8-6 8-12a8 8 0 0 0-8-8zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+            </svg>
+            <span class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 bg-clip-text text-transparent">RMP MINDS</span>
+          </div>
+          <div class="flex space-x-8 items-center">
+            <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition font-medium">Home</a>
+            <a href="#features" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition font-medium">Features</a>
+            <a href="#health-tips" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition font-medium">Health Tips</a>
+            <a href="#contact" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition font-medium">Contact</a>
+            <button id="theme-toggle" class="p-2 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm">
+              <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+              </svg>
+              <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path>
+              </svg>
             </button>
-            <button class="md:hidden text-white focus:outline-none" aria-label="Toggle menu" id="menu-toggle">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                </svg>
-            </button>
+            <a href="login.html" class="bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-500 dark:to-indigo-500 text-white px-6 py-2 rounded-full font-medium hover:shadow-lg transition duration-300">Login</a>
+          </div>
         </div>
-    </header>
+      </div>
+    </nav>
 
-    <!-- Hero Section with Video Background -->
-    <!-- <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-0 opacity-50 dark:opacity-70" poster="https://via.placeholder.com/1920x1080" aria-hidden="true">
-        <source src="video2.MOV" type="video/mp4">
-        Your browser does not support the video tag.
-    </video> -->
-    <main class="pt-10 flex items-center justify-center min-h-screen px-6 relative bg-amber-50" style="background-image: url('698.jpg');">
-        <div class="relative  md:w-1/2 h-full">
-            <h2 class="text-5xl font-bold text-[#5A6F47]">
-                <span class="text-black">Your Health,</span> Our Priority</h2>
-            <p class="text-lg mt-4 max-w-2xl">
-                RMP Minds provides quick and reliable remote medical assistance, prescriptions, and health tracking. Stay healthy with expert recommendations at your fingertips.
-            </p>
-            <a href="domy.html" class="absolute left-0 mt-8 bg-[#5A6F47] text-white px-8 py-3 rounded-full hover:bg-[#A67A5B] transition duration-300 transform hover:scale-105">
-                Get Started
-            </a>
-        </div>
-        <div class="relative  md:w-1/2 h-full bg-transparent">
-            <img src="main.png" 
-                         alt="Medical professional using RMP Minds" 
-                         class="w-full h-auto rounded-lg shadow-md object-cover">
-        </div>
-
-
-
-        <!-- <section class="relative">
-            <div class="flex justify-center items-center gap-4 pt-8 px-4">
-              <div class="relative max-w-2xl">
-                Main Image
-                <div class="relative z-10 rounded-2xl overflow-hidden shadow-2xl transform transition-transform duration-500 hover:scale-[1.05] w-150">
-                  <img
-                    src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
-                    alt="Doctor with patient"
-                    class="w-full h-auto object-cover"
-                  />
-                </div>
-          
-                Verified Doctors Card
-                <div
-                  class="absolute top-1/4 -right-8 bg-white p-4 rounded-lg shadow-lg transform transition-transform duration-500 hover:scale-105 z-20"
-                >
-                  <div class="flex items-center gap-3">
-                    <span class="bg-green-100 p-2 rounded-full">
-                      <span class="material-symbols-outlined text-green-600">verified</span>
-                    </span>
-                    <div>
-                      <p class="font-semibold text-gray-800">Verified Doctors</p>
-                      <p class="text-sm text-gray-600">100% Qualified Professionals</p>
-                    </div>
-                  </div>
-                </div>
-          
-                Mobile Accessible Card
-                <div
-                  class="absolute bottom-1/4 -left-8 bg-white p-4 rounded-lg shadow-lg transform transition-transform duration-500 hover:scale-105 z-20"
-                >
-                  <div class="flex items-center gap-3">
-                    <span class="bg-blue-100 p-2 rounded-full">
-                      <span class="material-symbols-outlined text-blue-600">smartphone</span>
-                    </span>
-                    <div>
-                      <p class="font-semibold text-gray-800">Mobile Accessible</p>
-                      <p class="text-sm text-gray-600">Anytime, Anywhere</p>
-                    </div>
-                  </div>
-                </div>
-          
-                Bottom Card with 24/7 Support and Digital Prescriptions
-                <div
-                  class="absolute -bottom-7 left-50 transform transition-transform duration-500 hover:scale-105 bg-white p-4 rounded-lg shadow-lg w-11/12 max-w-sm z-20"
-                >
-                  <div class="flex items-center justify-between gap-4">
-                    <div class="flex items-center gap-2">
-                      <div class="bg-red-100 p-2 rounded-full">
-                        <span class="material-symbols-outlined text-red-600">emergency</span>
-                      </div>
-                      <div>
-                        <p class="font-semibold text-gray-800">24/7 Support</p>
-                        <p class="text-xs text-gray-600">Medical assistance anytime</p>
-                      </div>
-                    </div>
-                    <div class="flex items-center gap-2">
-                      <div class="bg-purple-100 p-2 rounded-full">
-                        <span class="material-symbols-outlined text-purple-600">description</span>
-                      </div>
-                      <div>
-                        <p class="font-semibold text-gray-800">Digital Prescriptions</p>
-                        <p class="text-xs text-gray-600">Instant delivery</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-          
-                Background Decorative Layer
-                <div
-                  class="absolute -z-10 top-12 left-12 w-full h-full bg-blue-200 rounded-2xl opacity-50"
-                ></div>
+    <!-- getstarted Section -->
+    <section class="min-h-screen flex flex-col pt-16">
+      <div class="flex flex-1">
+        <div class="w-1/2 bg-[#F5F5F5] dark:bg-gray-800 min-h-screen">
+          <div class="px-12 py-20">
+            <div class="max-w-xl">
+              <div class="flex items-center space-x-2 mb-6">
+                <span class="px-3 py-1 text-sm font-medium text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30 rounded-full">AI-Powered</span>
+                <span class="px-3 py-1 text-sm font-medium text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-900/30 rounded-full">Personalized</span>
+              </div>
+              <h1 class="text-6xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
+                Your Personal<br/>
+                <span class="bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 bg-clip-text text-transparent">AI Health Diet</span><br/>
+                Assistant
+              </h1>
+              <p class="text-xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
+                Experience the future of nutrition with our AI-powered health platform. Get personalized meal plans, real-time tracking, and achieve your wellness goals effortlessly.
+              </p>
+              <div class="flex space-x-4">
+                <button class="bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-500 dark:to-indigo-500 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
+                  Start Your Journey
+                </button>
+                <button class="border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 px-8 py-4 rounded-xl font-semibold hover:bg-white dark:hover:bg-gray-700 hover:shadow-lg transition duration-300 transform hover:-translate-y-1 flex items-center space-x-2">
+                  <span>Watch Demo</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polygon points="10 8 16 12 10 16 10 8"></polygon>
+                  </svg>
+                </button>
               </div>
             </div>
-          
-            Bottom Gradient Overlay
-            <div
-              class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white to-transparent"
-            ></div>
-          </section> -->
-    </main>
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-        </ol>
-    <!-- About Section with Subtle Video -->
-    <section id="about" class="relative bg-white dark:bg-gray-800 py-16 px-6 text-center" aria-labelledby="about-heading">
-        <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-0 opacity-20 dark:opacity-30" poster="https://via.placeholder.com/1920x1080" aria-hidden="true">
-            <source src="video2.MOV" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <div class="relative z-10 animate-on-scroll">
-            <h2 id="about-heading" class="text-4xl font-bold text-green-900 dark:text-green-200">About RMP Minds</h2>
-            <div class="max-w-5xl mx-auto mt-8 flex flex-col md:flex-row items-center gap-8">
-                <p class="text-lg text-gray-700 dark:text-gray-300 flex-1">
-                    RMP Minds is a digital platform designed to bridge the gap between patients and remote medical professionals. Our AI-driven system allows users to input health details and receive expert advice instantly.
-                </p>
-                <div class="flex-1 max-w-md">
-                    <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                         alt="Medical professional using RMP Minds" 
-                         class="w-full h-auto rounded-lg shadow-md object-cover">
-                </div>
-            </div>
+          </div>
         </div>
+
+        <div class="w-1/2 bg-white dark:bg-gray-800 flex items-center justify-center p-12">
+          <div class="aspect-square rounded-3xl overflow-hidden w-full shadow-2xl dark:shadow-blue-500/10">
+            <div id="slideshow" class="relative h-full w-full [perspective:2000px] [transform-style:preserve-3d]">
+              <!-- Slides will be inserted here by JavaScript -->
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="bg-gray-50 dark:bg-gray-700 py-16 px-6 text-center" aria-labelledby="services-heading">
-        <h2 id="services-heading" class="text-4xl font-bold text-green-900 dark:text-green-200 animate-on-scroll">Our Services</h2>
-        <div class="flex flex-wrap justify-center gap-8 mt-8">
-            <div class="bg-white dark:bg-gray-800 shadow-lg p-6 rounded-lg w-80 hover:scale-105 transition animate-on-scroll">
-                <svg class="w-12 h-12 mx-auto text-green-800 dark:text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5v-4a2 2 0 012-2h10a2 2 0 012 2v4h-4M12 16h.01"></path>
-                </svg>
-                <h3 class="text-2xl font-semibold text-green-800 dark:text-green-200 mt-4">Remote Consultations</h3>
-                <p class="text-gray-600 dark:text-gray-300 mt-2">Talk to certified medical professionals from anywhere.</p>
-            </div>
-            <div class="bg-white dark:bg-gray-800 shadow-lg p-6 rounded-lg w-80 hover:scale-105 transition animate-on-scroll">
-                <svg class="w-12 h-12 mx-auto text-green-800 dark:text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
-                </svg>
-                <h3 class="text-2xl font-semibold text-green-800 dark:text-green-200 mt-4">AI-Powered Prescriptions</h3>
-                <p class="text-gray-600 dark:text-gray-300 mt-2">Receive AI-suggested prescriptions based on symptoms.</p>
-            </div>
-            <div class="bg-white dark:bg-gray-800 shadow-lg p-6 rounded-lg w-80 hover:scale-105 transition animate-on-scroll">
-                <svg class="w-12 h-12 mx-auto text-green-800 dark:text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                </svg>
-                <h3 class="text-2xl font-semibold text-green-800 dark:text-green-200 mt-4">Health Monitoring</h3>
-                <p class="text-gray-600 dark:text-gray-300 mt-2">Track vital signs like pulse, weight, and BMI.</p>
-            </div>
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-white dark:bg-gray-800">
+      <div class="max-w-7xl mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 bg-clip-text text-transparent">Why Choose RMP MINDS?</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Feature 1 -->
+          <div class="p-6 rounded-2xl bg-gray-50 dark:bg-gray-700 hover:shadow-xl transition duration-300">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-blue-600 dark:text-blue-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+            </svg>
+            <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Personalized Meal Plans</h3>
+            <p class="text-gray-600 dark:text-gray-300">AI-driven meal plans tailored to your preferences, dietary restrictions, and health goals.</p>
+          </div>
+
+          <!-- Feature 2 -->
+          <div class="p-6 rounded-2xl bg-gray-50 dark:bg-gray-700 hover:shadow-xl transition duration-300">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-blue-600 dark:text-blue-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+            </svg>
+            <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Progress Tracking</h3>
+            <p class="text-gray-600 dark:text-gray-300">Real-time monitoring of your nutrition goals with detailed analytics and insights.</p>
+          </div>
+
+          <!-- Feature 3 -->
+          <div class="p-6 rounded-2xl bg-gray-50 dark:bg-gray-700 hover:shadow-xl transition duration-300">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-blue-600 dark:text-blue-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">24/7 AI Support</h3>
+            <p class="text-gray-600 dark:text-gray-300">Get instant answers to your nutrition questions with our AI-powered chat support.</p>
+          </div>
         </div>
+      </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section class="bg-white dark:bg-gray-800 py-16 px-6 text-center" aria-labelledby="testimonials-heading">
-        <h2 id="testimonials-heading" class="text-4xl font-bold text-green-900 dark:text-green-200 animate-on-scroll">What Our Users Say</h2>
-        <div class="flex flex-wrap justify-center gap-8 mt-8">
-            <blockquote class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg w-80 shadow-md animate-on-scroll">
-                <p class="text-gray-700 dark:text-gray-300">"RMP Minds saved me a trip to the doctor with their quick consultation!"</p>
-                <cite class="block mt-2 text-green-800 dark:text-green-300 font-semibold">- Sarah M.</cite>
-            </blockquote>
-            <blockquote class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg w-80 shadow-md animate-on-scroll">
-                <p class="text-gray-700 dark:text-gray-300">"The health tracking feature keeps me motivated every day."</p>
-                <cite class="block mt-2 text-green-800 dark:text-green-300 font-semibold">- John D.</cite>
-            </blockquote>
+    <!-- Health Tips Section -->
+    <section id="health-tips" class="py-20 bg-gray-50 dark:bg-gray-900">
+      <div class="max-w-7xl mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 bg-clip-text text-transparent">Latest Health Tips</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Tip 1 -->
+          <div class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300">
+            <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1200" alt="Healthy Food" class="w-full h-48 object-cover"/>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Balanced Diet Essentials</h3>
+              <p class="text-gray-600 dark:text-gray-300">Learn about the key components of a balanced diet and how to incorporate them into your daily meals.</p>
+            </div>
+          </div>
+
+          <!-- Tip 2 -->
+          <div class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300">
+            <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1200" alt="Exercise" class="w-full h-48 object-cover"/>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Fitness & Nutrition</h3>
+              <p class="text-gray-600 dark:text-gray-300">Discover how to combine proper nutrition with exercise for optimal health results.</p>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
-    <!-- Contact Section with Video Background -->
-    <section id="contact" class="relative bg-[#5A6F47] dark:bg-[#5A6F47] text-white py-16 text-center" aria-labelledby="contact-heading">
-        
-        <div class="relative z-10 animate-on-scroll">
-            <h2 id="contact-heading" class="text-4xl font-bold">Get in Touch</h2>
-            <p class="text-lg mt-4">Have questions? Reach out to us anytime.</p>
-            <form class="max-w-lg mx-auto mt-8 space-y-4">
-                <input type="text" placeholder="Your Name" class="w-full p-3 rounded-lg bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-300" required aria-label="Name">
-                <input type="email" placeholder="Your Email" class="w-full p-3 rounded-lg bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-300" required aria-label="Email">
-                <textarea placeholder="Your Message" rows="4" class="w-full p-3 rounded-lg bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-300" required aria-label="Message"></textarea>
-                <button type="submit" class="bg-white text-green-900 dark:bg-green-700 dark:text-white px-6 py-3 rounded-full font-bold hover:bg-gray-300 dark:hover:bg-green-600 transition focus:outline-none focus:ring-2 focus:ring-white">Send Message</button>
-            </form>
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white dark:bg-gray-800">
+      <div class="max-w-7xl mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 bg-clip-text text-transparent">Get in Touch</h2>
+        <div class="max-w-2xl mx-auto">
+          <form class="space-y-6">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Name</label>
+              <input type="text" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"/>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email</label>
+              <input type="email" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"/>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Message</label>
+              <textarea rows="4" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"></textarea>
+            </div>
+            <button class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-500 dark:to-indigo-500 text-white px-6 py-3 rounded-lg font-medium hover:shadow-lg transition duration-300">Send Message</button>
+          </form>
         </div>
+      </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-green-950 dark:bg-gray-900 text-white text-center py-6" role="contentinfo">
-        <div class="flex justify-center gap-6 mb-4 animate-on-scroll">
-            <a href="#" aria-label="Twitter" class="hover:text-green-300 transition"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path></svg></a>
-            <a href="#" aria-label="Facebook" class="hover:text-green-300 transition"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path></svg></a>
+    <footer class="bg-gray-50 dark:bg-gray-900 py-12">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div>
+            <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">About Us</h3>
+            <p class="text-gray-600 dark:text-gray-300">RMP MINDS is your AI-powered health companion, dedicated to helping you achieve your wellness goals.</p>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">Quick Links</h3>
+            <ul class="space-y-2">
+              <li><a href="#" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">Home</a></li>
+              <li><a href="#features" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">Features</a></li>
+              <li><a href="#health-tips" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">Health Tips</a></li>
+              <li><a href="#contact" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">Contact</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">Contact</h3>
+            <ul class="space-y-2">
+              <li class="text-gray-600 dark:text-gray-300">Email: info@rmpminds.com</li>
+              <li class="text-gray-600 dark:text-gray-300">Phone: +1 (555) 123-4567</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">Follow Us</h3>
+            <div class="flex space-x-4">
+              <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
+                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              </a>
+              <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
+                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+              </a>
+              <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
+                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/></svg>
+              </a>
+            </div>
+          </div>
         </div>
-        <p class="animate-on-scroll">© 2025 RMP Minds. All rights reserved.</p>
+        <div class="border-t border-gray-200 dark:border-gray-700 mt-8 pt-8 text-center">
+          <p class="text-gray-600 dark:text-gray-300">&copy; 2024 RMP MINDS. All rights reserved.</p>
+        </div>
+      </div>
     </footer>
 
-    <!-- Scroll to Top Button with Progress Indicator -->
-<div class="fixed bottom-6 right-6 z-50">
-    <!-- Circular Progress Indicator (Background) -->
-    <svg class="w-14 h-14" viewBox="0 0 36 36">
-        <path class="stroke-current text-green-200 opacity-50" fill="none" stroke-width="2" d="M18 2.0845
-            a 15.9155 15.9155 0 0 1 0 31.831
-            a 15.9155 15.9155 0 0 1 0 -31.831" />
-        <path id="scroll-progress" class="stroke-current text-green-600" fill="none" stroke-width="2" stroke-linecap="round" d="M18 2.0845
-            a 15.9155 15.9155 0 0 1 0 31.831
-            a 15.9155 15.9155 0 0 1 0 -31.831" style="stroke-dasharray: 100; stroke-dashoffset: 100;" />
+    <!-- Chatbot Widget -->
+    <div class="fixed bottom-4 left-4 z-50">
+  <button id="chat-widget" class="flex items-center bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-500 dark:to-indigo-500 text-white px-4 py-3 rounded-full shadow-lg hover:shadow-xl transition duration-300">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
     </svg>
-    
-    <!-- Scroll to Top Button -->
-    <button id="scroll-top" 
-            class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
-                   bg-green-600 text-white p-3 rounded-full shadow-lg hover:bg-green-700 
-                   transition duration-300 ease-in-out hover:scale-110 hidden animate-bounce-slow" 
-            aria-label="Scroll to top">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
-        </svg>
-    </button>
+    <span class="ml-2 hidden sm:inline">Chat with AI</span>
+  </button>
 </div>
 
-    <!-- Live Chat Widget -->
-    <div id="chat-widget" class="fixed bottom-6 left-6 bg-[#5A6F47] text-white w-20 h-20 rounded-full shadow-lg cursor-pointer hover:bg-[#A67A5B] transition duration-300 flex items-center justify-center text-4xl animate-on-scroll">
-        <a href="../Chat-bot-main/Chat-bot-main/index.html" target="_blank" title="Chat with AI">🤖</a>
-    </div>
-    
-    
-
-<!-- Chatbox -->
-<!-- <div id="chat-box" class="hidden absolute bottom-16 left-0 bg-white dark:bg-gray-800 text-gray-900 dark:text-white p-4 rounded-lg shadow-lg w-64">
-    <p class="text-sm">Hi! How can we assist you today?</p>
-    <input type="text" placeholder="Type a message..." class="w-full mt-2 p-2 rounded-lg border dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-green-300" aria-label="Chat input">
-    
-</div> -->
-
-    <!-- JavaScript -->
     <script>
-        // Mobile Menu Toggle
-        const menuToggle = document.getElementById('menu-toggle');
-        const nav = document.querySelector('nav');
-        menuToggle.addEventListener('click', () => {
-            nav.classList.toggle('hidden');
-            nav.classList.toggle('md:flex');
-        });
+      const images = [
+        "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=1200",
+        "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1200",
+        "https://images.unsplash.com/photo-1495461199391-8c39ab674295?q=80&w=1200",
+        "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1200"
+      ];
 
-        // Dark Mode Toggle
-        const themeToggle = document.getElementById('theme-toggle');
-        const body = document.getElementById('body');
-        const sunIcon = document.getElementById('sun-icon');
-        const moonIcon = document.getElementById('moon-icon');
-        themeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark');
-            sunIcon.classList.toggle('hidden');
-            moonIcon.classList.toggle('hidden');
-            localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
-        });
-        if (localStorage.getItem('theme') === 'dark') {
-            body.classList.add('dark');
-            sunIcon.classList.add('hidden');
-            moonIcon.classList.remove('hidden');
+      let currentImageIndex = 0;
+      const slideshowContainer = document.getElementById('slideshow');
+
+      function createSlide(src, className) {
+        const slide = document.createElement('div');
+        slide.className = `absolute w-full h-full [backface-visibility:hidden] [transform-style:preserve-3d] transition-all duration-800 ease-[cubic-bezier(0.4,0,0.2,1)] ${className}`;
+        
+        const img = document.createElement('img');
+        img.src = src;
+        img.className = 'w-full h-full object-cover rounded-3xl shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] [transform:translateZ(50px)]';
+        
+        slide.appendChild(img);
+        return slide;
+      }
+
+      function updateSlideshow() {
+        slideshowContainer.innerHTML = '';
+        
+        const prevIndex = (currentImageIndex - 1 + images.length) % images.length;
+        const nextIndex = (currentImageIndex + 1) % images.length;
+        
+        const prevSlide = createSlide(images[prevIndex], '[transform:rotateY(-180deg)_translateZ(100px)] opacity-0');
+        const currentSlide = createSlide(images[currentImageIndex], '[transform:rotateY(0deg)_translateZ(100px)] opacity-100');
+        const nextSlide = createSlide(images[nextIndex], '[transform:rotateY(180deg)_translateZ(100px)] opacity-0');
+        
+        slideshowContainer.appendChild(prevSlide);
+        slideshowContainer.appendChild(currentSlide);
+        slideshowContainer.appendChild(nextSlide);
+        
+        currentImageIndex = nextIndex;
+      }
+
+      // Theme toggle functionality
+      const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+      const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+      if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        themeToggleLightIcon.classList.remove('hidden');
+        document.documentElement.classList.add('dark');
+      } else {
+        themeToggleDarkIcon.classList.remove('hidden');
+        document.documentElement.classList.remove('dark');
+      }
+
+      const themeToggleBtn = document.getElementById('theme-toggle');
+      themeToggleBtn.addEventListener('click', function() {
+        themeToggleDarkIcon.classList.toggle('hidden');
+        themeToggleLightIcon.classList.toggle('hidden');
+
+        if (localStorage.getItem('color-theme')) {
+          if (localStorage.getItem('color-theme') === 'light') {
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('color-theme', 'dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('color-theme', 'light');
+          }
+        } else {
+          if (document.documentElement.classList.contains('dark')) {
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('color-theme', 'light');
+          } else {
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('color-theme', 'dark');
+          }
         }
+      });
 
-        // Scroll to Top
-        const scrollTop = document.getElementById('scroll-top');
-        window.addEventListener('scroll', () => {
-            scrollTop.classList.toggle('hidden', window.scrollY < 300);
+      // Chatbot Widget
+      const chatWidget = document.getElementById('chat-widget');
+  chatWidget.addEventListener('click', function() {
+    // Redirect to the chatbot page
+    window.location.href = '../Chat-bot-main/Chat-bot-main/index.html';
+  });
+
+      // Initial slideshow setup
+      updateSlideshow();
+      setInterval(updateSlideshow, 2000);
+
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+          });
         });
-        scrollTop.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-         // Chat Widget Toggle
-    const chatWidget = document.getElementById('chat-widget');
-    const chatBox = document.getElementById('chat-box');
-    chatWidget.addEventListener('click', () => {
-        chatBox.classList.toggle('hidden');
-    });
-
-        // Scrolling Animation
-        const elements = document.querySelectorAll('.animate-on-scroll');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-fade-in-up');
-                    observer.unobserve(entry.target); // Stop observing once animated
-                }
-            });
-        }, { threshold: 0.3 }); // Trigger when 30% of element is visible
-
-        elements.forEach(element => observer.observe(element));
+      });
     </script>
-
-    <!-- CSS -->
-    <style>
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-in-down { animation: fadeInDown 0.8s ease-out; }
-        .animate-on-scroll { opacity: 0; } /* Initial state */
-        .animate-on-scroll.animate-fade-in-up { animation: fadeInUp 0.8s ease-out forwards; }
-        .dark { background-color: #1f2937; }
-        @media (max-width: 768px) {
-            nav { 
-                display: none; 
-                position: absolute; 
-                top: 100%; 
-                left: 0; 
-                right: 0; 
-                background: rgba(5, 46, 22, 0.95); 
-                flex-direction: column; 
-                padding: 1rem; 
-            }
-            nav a { margin: 0.5rem 0; }
-        }
-    </style>
-</body>
+  </body>
 </html>

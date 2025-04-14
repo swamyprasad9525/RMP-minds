@@ -3,99 +3,304 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RMD Minds - Login</title>
-    <link rel="stylesheet" href="output.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>RMP MINDS | Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .title-font {
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .hero-section {
+            background-image: url('https://images.unsplash.com/photo-1534258936925-c58bed479fcb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3431&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+        }
+        
+        .hero-overlay {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.85) 0%, rgba(16, 185, 129, 0.85) 100%);
+        }
+        
+        .login-container {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes scaleIn {
+            from { transform: scale(0.95); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        
+        .animate-scale-in {
+            animation: scaleIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+        
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        
+        .input-highlight {
+            transition: all 0.3s ease;
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0);
+        }
+        
+        .input-highlight:focus {
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+        }
+        
+        .btn-3d {
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+        }
+        
+        .btn-3d:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
+        }
+        
+        .btn-3d:active {
+            transform: translateY(1px);
+        }
+        
+        .social-btn {
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+        }
+        
+        .social-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+        }
+        
+        .logo-text {
+            font-size: 1.75rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #3b82f6 0%, #10b981 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 1px;
+        }
+    </style>
 </head>
-<body class="min-h-screen bg-[#4A5E3F] from-blue-50 to-gray-100 flex items-center justify-center p-4">
-    <div class="flex items-center justify-center w-1/2 h-screen">
-        <a href="home.html" class="block w-full max-w-xs">
-            <img src="image.png" alt="RMP Minds Logo" class="h-24 w-full object-contain mx-auto rounded-4xl">
-        </a>
-    </div>
-    
-    <div class="w-full max-w-xl bg-[#F5F5E9] rounded-xl shadow-md p-8 sm:p-8 mr-25 transition-all hover:shadow-lg">
-        <div class="text-center mb-8">
-            <h1 class="text-3xl font-bold text-[#2A3A2F]">
-                <span class="text-[#4A5E3F] text-4xl">Hello again!</span>Let’s get started
-            </h1>
-            <p class="text-[#2A3A2F] mt-2">Sign in to your account</p>
-        </div>
-    
-        <form id="loginForm" class="space-y-6" action="login1.php" method="POST">
-            <div>
-                <label for="email" class="block text-sm font-medium text-[#2A3A2F]">Email Address</label>
-                <div class="mt-1 relative">
-                    <input type="email" id="email" name="email" placeholder="Email" 
-                           class="w-full pl-10 pr-4 py-3 border border-[#D4A76A] rounded-lg focus:ring-2 focus:ring-[#4A5E3F] focus:border-[#4A5E3F] transition-all" 
-                           required>
-                    <i class="fas fa-envelope absolute left-3 top-1/2 transform -translate-y-1/2 text-[#2A3A2F]"></i>
+<body class="min-h-screen">
+    <div class="flex flex-col lg:flex-row min-h-screen">
+        <!-- Full-screen 3D Hero Section -->
+        <div class="w-full lg:w-1/2 hero-section flex items-center justify-center min-h-[50vh] lg:min-h-screen">
+            <div class="hero-overlay absolute inset-0"></div>
+            
+            <div class="relative z-10 text-center p-8 max-w-2xl">
+                <h1 class="title-font text-5xl md:text-6xl font-black text-white mb-6 animate-fade-in">
+                    ELEVATE YOUR <span class="text-yellow-300">FITNESS</span>
+                </h1>
+                <p class="text-xl text-blue-100 mb-8 animate-fade-in delay-100">
+                    Join thousands achieving their health goals with our premium platform
+                </p>
+                
+                <div class="flex justify-center space-x-6 animate-fade-in delay-200">
+                    <div class="bg-white bg-opacity-20 p-4 rounded-full backdrop-blur-sm transition-all duration-300 hover:bg-opacity-30 animate-float" style="animation-delay: 0s;">
+                        <i class="fas fa-dumbbell text-2xl text-white"></i>
+                    </div>
+                    <div class="bg-white bg-opacity-20 p-4 rounded-full backdrop-blur-sm transition-all duration-300 hover:bg-opacity-30 animate-float" style="animation-delay: 1s;">
+                        <i class="fas fa-heartbeat text-2xl text-white"></i>
+                    </div>
+                    <div class="bg-white bg-opacity-20 p-4 rounded-full backdrop-blur-sm transition-all duration-300 hover:bg-opacity-30 animate-float" style="animation-delay: 2s;">
+                        <i class="fas fa-running text-2xl text-white"></i>
+                    </div>
                 </div>
             </div>
-    
-            <div>
-                <label for="password" class="block text-sm font-medium text-[#2A3A2F]">Password</label>
-                <div class="mt-1 relative">
-                    <input type="password" id="password" name="password" placeholder="••••••••" 
-                           class="w-full pl-10 pr-12 py-3 border border-[#D4A76A] rounded-lg focus:ring-2 focus:ring-[#4A5E3F] focus:border-[#4A5E3F] transition-all" 
-                           required>
-                    <i class="fas fa-lock absolute left-3 top-1/2 transform -translate-y-1/2 text-[#2A3A2F]"></i>
-                    <button type="button" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#2A3A2F] hover:text-[#4A5E3F] password-toggle">
-                        <i class="fas fa-eye"></i>
+        </div>
+
+        <!-- Full-screen Login Section -->
+        <div class="w-full lg:w-1/2 flex items-center justify-center">
+            <div class="login-container w-full max-w-md">
+                <div class="text-center mb-10">
+                    <div class="flex flex-col items-center mb-6">
+                        <div class="bg-gradient-to-r from-blue-500 to-teal-400 p-2 rounded-full animate-fade-in">
+                            <div class="bg-white p-2 rounded-full">
+                                <i class="fas fa-brain text-blue-500 text-3xl"></i>
+                            </div>
+                        </div>
+                        <h1 class="logo-text mt-4 animate-fade-in delay-100">RMP MINDS</h1>
+                    </div>
+                    <h2 class="title-font text-3xl font-bold text-gray-800 mb-2 animate-fade-in delay-200">WELCOME BACK</h2>
+                    <p class="text-gray-600 animate-fade-in delay-300">Sign in to access your dashboard</p>
+                </div>
+
+                <form class="space-y-6" id="loginForm">
+                    <div class="animate-fade-in delay-200">
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+                                <i class="far fa-envelope"></i>
+                            </div>
+                            <input type="email" id="email" name="email" 
+                                   class="input-highlight w-full pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 transition-all duration-300" 
+                                   placeholder="your@email.com" required>
+                        </div>
+                    </div>
+
+                    <div class="animate-fade-in delay-300">
+                        <label for="password" class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                            <input type="password" id="password" name="password" 
+                                   class="input-highlight w-full pl-10 pr-12 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 transition-all duration-300" 
+                                   placeholder="••••••••" required>
+                            <button type="button" id="togglePassword" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-blue-500 transition-colors duration-200">
+                                <i class="far fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between animate-fade-in delay-400">
+                        <div class="flex items-center">
+                            <input id="remember-me" name="remember-me" type="checkbox" 
+                                   class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                            <label for="remember-me" class="ml-2 block text-sm text-gray-700">Remember me</label>
+                        </div>
+                        <div class="text-sm">
+                            <a href="#" class="font-medium text-blue-600 hover:text-blue-500 transition-colors duration-200">Forgot password?</a>
+                        </div>
+                    </div>
+
+                    <button type="submit" 
+                            class="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-xl text-lg font-medium text-white bg-gradient-to-r from-blue-600 to-blue-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 btn-3d animate-fade-in delay-500">
+                        <span id="button-text">SIGN IN</span>
+                        <i class="fas fa-arrow-right ml-2"></i>
                     </button>
+                </form>
+
+                <div class="mt-8 text-center animate-fade-in delay-600">
+                    <p class="text-sm text-gray-600">
+                        New to RMP MINDS? 
+                        <a href="register.html" class="font-medium text-blue-600 hover:text-blue-500 transition-colors duration-200">Create account</a>
+                    </p>
+                </div>
+                
+                <!-- Social login -->
+                <div class="mt-8 animate-fade-in delay-700">
+                    <div class="relative">
+                        <div class="absolute inset-0 flex items-center">
+                            <div class="w-full border-t border-gray-200"></div>
+                        </div>
+                        <div class="relative flex justify-center">
+                            <span class="px-3 bg-transparent text-sm text-gray-500">Or continue with</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 grid grid-cols-3 gap-3">
+                        <a href="#" class="social-btn bg-white border border-gray-200 rounded-lg py-3 flex items-center justify-center text-gray-700 hover:bg-gray-50">
+                            <i class="fab fa-google text-red-500 text-xl"></i>
+                        </a>
+                        <a href="#" class="social-btn bg-white border border-gray-200 rounded-lg py-3 flex items-center justify-center text-gray-700 hover:bg-gray-50">
+                            <i class="fab fa-facebook-f text-blue-600 text-xl"></i>
+                        </a>
+                        <a href="#" class="social-btn bg-white border border-gray-200 rounded-lg py-3 flex items-center justify-center text-gray-700 hover:bg-gray-50">
+                            <i class="fab fa-apple text-gray-800 text-xl"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
-    
-            <div class="flex items-center justify-between text-sm">
-                <label class="flex items-center">
-                    <input type="checkbox" name="remember" class="h-4 w-4 text-[#4A5E3F] focus:ring-[#4A5E3F] border-[#D4A76A] rounded">
-                    <span class="ml-2 text-[#2A3A2F]">Remember me</span>
-                </label>
-                <a href="#" class="text-[#4A5E3F] hover:underline">Forgot Password?</a>
-            </div>
-    
-            <button type="submit" class="w-full bg-[#A66A3C] text-[#F5F5E9] py-3 rounded-lg font-semibold hover:bg-[#D4A76A] transition-colors flex items-center justify-center">
-                Sign In
-                <i class="fas fa-arrow-right ml-2"></i>
-            </button>
-        </form>
-    
-        <p class="mt-6 text-center text-sm text-[#2A3A2F]">
-            Don't have an account? 
-            <a href="signup.html" class="text-[#4A5E3F] font-semibold hover:underline">Sign Up</a>
-        </p>
-    
-        <div class="flex items-center my-6">
-            <hr class="flex-grow border-[#D4A76A]">
-            <span class="px-3 text-sm text-[#2A3A2F]">OR</span>
-            <hr class="flex-grow border-[#D4A76A]">
         </div>
-    
-        <button class="google-btn w-full flex items-center justify-center py-3 border border-[#D4A76A] rounded-lg hover:bg-[#F5F5E9] transition-colors">
-            <img src="https://www.svgrepo.com/show/355037/google.svg" alt="Google" class="w-5 h-5 mr-2">
-            Continue with Google
-        </button>
-    
-        <p class="mt-6 text-xs text-center text-[#2A3A2F]">
-            By signing in, you agree to our 
-            <a href="#" class="text-[#4A5E3F] hover:underline">Terms</a>, 
-            <a href="#" class="text-[#4A5E3F] hover:underline">Privacy Policy</a>, and 
-            <a href="#" class="text-[#4A5E3F] hover:underline">Cookie Policy</a>
-        </p>
     </div>
 
-     <script>
-        // Password toggle functionality
-        const passwordToggle = document.querySelector('.password-toggle');
-        const passwordInput = document.querySelector('#password');
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Password visibility toggle
+            const togglePassword = document.getElementById('togglePassword');
+            const password = document.getElementById('password');
+            
+            togglePassword.addEventListener('click', function() {
+                const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+                password.setAttribute('type', type);
+                this.innerHTML = type === 'password' ? '<i class="far fa-eye"></i>' : '<i class="far fa-eye-slash"></i>';
+            });
 
-        passwordToggle.addEventListener('click', () => {
-            const isPassword = passwordInput.type === 'password';
-            passwordInput.type = isPassword ? 'text' : 'password';
-            passwordToggle.querySelector('i').classList.toggle('fa-eye');
-            passwordToggle.querySelector('i').classList.toggle('fa-eye-slash');
+            // Form submission animation
+            const form = document.getElementById('loginForm');
+            const buttonText = document.getElementById('button-text');
+            
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const button = form.querySelector('button[type="submit"]');
+                button.disabled = true;
+                buttonText.textContent = 'AUTHENTICATING...';
+                button.querySelector('i').className = 'fas fa-spinner fa-spin ml-2';
+                
+                // Simulate API call
+                setTimeout(() => {
+                    buttonText.textContent = 'ACCESS GRANTED';
+                    button.querySelector('i').className = 'fas fa-check ml-2';
+                    button.classList.remove('from-blue-600', 'to-blue-400');
+                    button.classList.add('from-green-500', 'to-teal-400');
+                    
+                    // Redirect after success (simulated)
+                    setTimeout(() => {
+                        window.location.href = 'dashboard.html';
+                    }, 1000);
+                }, 2000);
+            });
+
+            // Add hover effects to social buttons
+            const socialBtns = document.querySelectorAll('.social-btn');
+            socialBtns.forEach(btn => {
+                btn.addEventListener('mouseenter', () => {
+                    const icon = btn.querySelector('i');
+                    icon.classList.add('fa-bounce');
+                });
+                btn.addEventListener('mouseleave', () => {
+                    const icon = btn.querySelector('i');
+                    icon.classList.remove('fa-bounce');
+                });
+            });
+            
+            // Input focus effects
+            const inputs = document.querySelectorAll('input');
+            inputs.forEach(input => {
+                input.addEventListener('focus', () => {
+                    input.parentElement.querySelector('i').classList.add('text-blue-500');
+                });
+                input.addEventListener('blur', () => {
+                    input.parentElement.querySelector('i').classList.remove('text-blue-500');
+                });
+            });
         });
-       
-    </script> 
+    </script>
 </body>
 </html>
