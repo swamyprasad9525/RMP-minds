@@ -1,41 +1,43 @@
 <?php
 session_start();
-include "connect.php";
+include "connect.php"; // Uses $conn (MySQLi)
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Sanitize & validate inputs
-    $fname = filter_input(INPUT_POST, "first_name", FILTER_SANITIZE_STRING);
-    $lname = filter_input(INPUT_POST, "last_name", FILTER_SANITIZE_STRING);
-    $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
+    $fname = htmlspecialchars(trim($_POST["first_name"]));
+    $lname = htmlspecialchars(trim($_POST["last_name"]));
+    $email = filter_var($_POST["email"], FILTER_VALIDATE_EMAIL);
     $password = $_POST["password"];
     $confirm = $_POST["confirm_password"];
     $terms = isset($_POST["terms"]);
 
     if (!$fname || !$lname || !$email || !$password || !$confirm || !$terms) {
-        die("Please fill all fields and accept terms.");
+        echo "<script>alert('Please fill all fields and accept terms.'); window.history.back();</script>";
+        exit();
     }
 
     if ($password !== $confirm) {
-        die("Passwords do not match.");
+        echo "<script>alert('Passwords do not match.'); window.history.back();</script>";
+        exit();
     }
 
-    // Password validation (min 6, at least 1 number)
     if (!preg_match("/^(?=.*\d).{6,}$/", $password)) {
-        die("Password must be at least 6 characters and contain a number.");
+        echo "<script>alert('Password must be at least 6 characters and contain a number.'); window.history.back();</script>";
+        exit();
     }
 
     $hashed_pass = password_hash($password, PASSWORD_BCRYPT);
 
-    try {
-        $stmt = $pdo->prepare("INSERT INTO users (first_name, last_name, email, password) VALUES (?, ?, ?, ?)");
-        $stmt->execute([$fname, $lname, $email, $hashed_pass]);
+    $stmt = $conn->prepare("INSERT INTO users (first_name, last_name, email, password, agreed_terms) VALUES (?, ?, ?, ?, ?)");
+    $agreed = 1; // true for agreed_terms
+    $stmt->bind_param("ssssi", $fname, $lname, $email, $hashed_pass, $agreed);
 
-        // Send welcome email
-        mail($email, "Welcome to RMP MINDS", "Hi $fname,\n\nThanks for signing up!");
-
-        echo "Account created! You can now <a href='login.php'>Sign In</a>";
-    } catch (Exception $e) {
-        echo "Registration error: " . $e->getMessage();
+    if ($stmt->execute()) {
+        $stmt->close();
+        $conn->close();
+        header("Location: home.html");
+        exit();
+    } else {
+        echo "<script>alert('Registration failed: " . $stmt->error . "'); window.history.back();</script>";
     }
 }
 ?>
