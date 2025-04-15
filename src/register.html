@@ -173,7 +173,7 @@
                     <p class="text-gray-600 animate-fade-in delay-300">Start your fitness transformation today</p>
                 </div>
 
-                <form class="space-y-4" id="registerForm">
+                <form class="space-y-4" id="registerForm" action="registerBack.php" method="POST">
                     <div class="grid grid-cols-2 gap-4 animate-fade-in delay-100">
                         <div>
                             <label for="firstName" class="block text-sm font-medium text-gray-700 mb-2">First Name</label>
@@ -181,7 +181,7 @@
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
                                     <i class="far fa-user"></i>
                                 </div>
-                                <input type="text" id="firstName" name="firstName" 
+                                <input type="text" id="firstName" name="first_name" 
                                        class="input-highlight w-full pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 transition-all duration-300" 
                                        placeholder="Rishu" required>
                             </div>
@@ -192,7 +192,7 @@
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
                                     <i class="far fa-user"></i>
                                 </div>
-                                <input type="text" id="lastName" name="lastName" 
+                                <input type="text" id="lastName" name="last_name" 
                                        class="input-highlight w-full pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 transition-all duration-300" 
                                        placeholder="Pandey" required>
                             </div>
@@ -236,7 +236,7 @@
                             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
                                 <i class="fas fa-lock"></i>
                             </div>
-                            <input type="password" id="confirmPassword" name="confirmPassword" 
+                            <input type="password" id="confirmPassword" name="confirm_password" 
                                    class="input-highlight w-full pl-10 pr-12 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 transition-all duration-300" 
                                    placeholder="••••••••" required>
                             <button type="button" id="toggleConfirmPassword" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-blue-500 transition-colors duration-200">
@@ -293,144 +293,130 @@
             </div>
         </div>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Password visibility toggle
-            const togglePassword = document.getElementById('togglePassword');
-            const password = document.getElementById('password');
-            const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
-            const confirmPassword = document.getElementById('confirmPassword');
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Password visibility toggle
+        const togglePassword = document.getElementById('togglePassword');
+        const password = document.getElementById('password');
+        const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
+        const confirmPassword = document.getElementById('confirmPassword');
+        
+        togglePassword.addEventListener('click', function() {
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            this.innerHTML = type === 'password' ? '<i class="far fa-eye"></i>' : '<i class="far fa-eye-slash"></i>';
+        });
+    
+        toggleConfirmPassword.addEventListener('click', function() {
+            const type = confirmPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+            confirmPassword.setAttribute('type', type);
+            this.innerHTML = type === 'password' ? '<i class="far fa-eye"></i>' : '<i class="far fa-eye-slash"></i>';
+        });
+    
+        // Password strength indicator
+        password.addEventListener('input', function() {
+            const strengthBar = document.getElementById('passwordStrengthBar');
+            const strengthText = document.getElementById('passwordStrengthText');
+            const strength = calculatePasswordStrength(this.value);
             
-            togglePassword.addEventListener('click', function() {
-                const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-                password.setAttribute('type', type);
-                this.innerHTML = type === 'password' ? '<i class="far fa-eye"></i>' : '<i class="far fa-eye-slash"></i>';
-            });
-
-            toggleConfirmPassword.addEventListener('click', function() {
-                const type = confirmPassword.getAttribute('type') === 'password' ? 'text' : 'password';
-                confirmPassword.setAttribute('type', type);
-                this.innerHTML = type === 'password' ? '<i class="far fa-eye"></i>' : '<i class="far fa-eye-slash"></i>';
-            });
-
-            // Password strength indicator
-            password.addEventListener('input', function() {
-                const strengthBar = document.getElementById('passwordStrengthBar');
-                const strengthText = document.getElementById('passwordStrengthText');
-                const strength = calculatePasswordStrength(this.value);
-                
-                strengthBar.style.width = strength.percentage + '%';
-                strengthBar.style.backgroundColor = strength.color;
-                strengthText.textContent = strength.text;
-                strengthText.style.color = strength.color;
-            });
-
-            function calculatePasswordStrength(password) {
-                let strength = 0;
-                let text = '';
-                let color = '#ef4444'; // red
-                
-                // Length check
-                if (password.length > 0) strength += 10;
-                if (password.length >= 8) strength += 20;
-                if (password.length >= 12) strength += 20;
-                
-                // Complexity checks
-                if (/[A-Z]/.test(password)) strength += 10;
-                if (/[0-9]/.test(password)) strength += 10;
-                if (/[^A-Za-z0-9]/.test(password)) strength += 10;
-                
-                // Common password check (simplified)
-                const commonPasswords = ['password', '123456', 'qwerty'];
-                if (!commonPasswords.includes(password.toLowerCase())) strength += 20;
-                
-                // Determine strength level
-                if (strength < 30) {
-                    text = 'Very Weak';
-                    color = '#ef4444'; // red
-                } else if (strength < 60) {
-                    text = 'Weak';
-                    color = '#f59e0b'; // amber
-                } else if (strength < 80) {
-                    text = 'Good';
-                    color = '#10b981'; // emerald
-                } else {
-                    text = 'Strong';
-                    color = '#3b82f6'; // blue
-                }
-                
-                return {
-                    percentage: Math.min(strength, 100),
-                    text: text,
-                    color: color
-                };
+            strengthBar.style.width = strength.percentage + '%';
+            strengthBar.style.backgroundColor = strength.color;
+            strengthText.textContent = strength.text;
+            strengthText.style.color = strength.color;
+        });
+    
+        function calculatePasswordStrength(password) {
+            let strength = 0;
+            let text = '';
+            let color = '#ef4444'; // red
+            
+            if (password.length > 0) strength += 10;
+            if (password.length >= 8) strength += 20;
+            if (password.length >= 12) strength += 20;
+            
+            if (/[A-Z]/.test(password)) strength += 10;
+            if (/[0-9]/.test(password)) strength += 10;
+            if (/[^A-Za-z0-9]/.test(password)) strength += 10;
+            
+            const commonPasswords = ['password', '123456', 'qwerty'];
+            if (!commonPasswords.includes(password.toLowerCase())) strength += 20;
+            
+            if (strength < 30) {
+                text = 'Very Weak';
+                color = '#ef4444'; // red
+            } else if (strength < 60) {
+                text = 'Weak';
+                color = '#f59e0b'; // amber
+            } else if (strength < 80) {
+                text = 'Good';
+                color = '#10b981'; // emerald
+            } else {
+                text = 'Strong';
+                color = '#3b82f6'; // blue
             }
-
-            // Form submission animation
-            const form = document.getElementById('registerForm');
-            const buttonText = document.getElementById('button-text');
             
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // Validate passwords match
-                if (password.value !== confirmPassword.value) {
-                    alert('Passwords do not match!');
-                    return;
-                }
-                
-                // Validate terms checkbox
-                if (!document.getElementById('terms').checked) {
-                    alert('You must agree to the terms and conditions');
-                    return;
-                }
-                
-                const button = form.querySelector('button[type="submit"]');
-                button.disabled = true;
-                buttonText.textContent = 'CREATING ACCOUNT...';
-                button.querySelector('i').className = 'fas fa-spinner fa-spin ml-2';
-                
-                // Simulate API call
-                setTimeout(() => {
-                    buttonText.textContent = 'ACCOUNT CREATED';
-                    button.querySelector('i').className = 'fas fa-check ml-2';
-                    button.classList.remove('from-blue-600', 'to-blue-400');
-                    button.classList.add('from-green-500', 'to-teal-400');
-                    
-                    // Redirect after success (simulated)
-                    setTimeout(() => {
-                        window.location.href = 'dashboard.html';
-                    }, 1000);
-                }, 2000);
-            });
-
-            // Add hover effects to social buttons
-            const socialBtns = document.querySelectorAll('.social-btn');
-            socialBtns.forEach(btn => {
-                btn.addEventListener('mouseenter', () => {
-                    const icon = btn.querySelector('i');
-                    icon.classList.add('fa-bounce');
-                });
-                btn.addEventListener('mouseleave', () => {
-                    const icon = btn.querySelector('i');
-                    icon.classList.remove('fa-bounce');
-                });
-            });
+            return {
+                percentage: Math.min(strength, 100),
+                text: text,
+                color: color
+            };
+        }
+    
+        // Form submission
+        const form = document.getElementById('registerForm');
+        const buttonText = document.getElementById('button-text');
+        
+        form.addEventListener('submit', function(e) {
+            // Validate passwords match
+            if (password.value !== confirmPassword.value) {
+                e.preventDefault(); // Prevent submission if validation fails
+                alert('Passwords do not match!');
+                return;
+            }
             
-            // Input focus effects
-            const inputs = document.querySelectorAll('input');
-            inputs.forEach(input => {
-                input.addEventListener('focus', () => {
-                    const icon = input.parentElement.querySelector('i');
-                    if (icon) icon.classList.add('text-blue-500');
-                });
-                input.addEventListener('blur', () => {
-                    const icon = input.parentElement.querySelector('i');
-                    if (icon) icon.classList.remove('text-blue-500');
-                });
+            // Validate terms checkbox
+            if (!document.getElementById('terms').checked) {
+                e.preventDefault(); // Prevent submission if validation fails
+                alert('You must agree to the terms and conditions');
+                return;
+            }
+            
+            // Update button state to show loading
+            const button = form.querySelector('button[type="submit"]');
+            button.disabled = true;
+            buttonText.textContent = 'CREATING ACCOUNT...';
+            button.querySelector('i').className = 'fas fa-spinner fa-spin ml-2';
+            
+            // Form will now submit to the action URL (registerBack.php)
+            // No need for setTimeout or simulated API call
+        });
+    
+        // Add hover effects to social buttons
+        const socialBtns = document.querySelectorAll('.social-btn');
+        socialBtns.forEach(btn => {
+            btn.addEventListener('mouseenter', () => {
+                const icon = btn.querySelector('i');
+                icon.classList.add('fa-bounce');
+            });
+            btn.addEventListener('mouseleave', () => {
+                const icon = btn.querySelector('i');
+                icon.classList.remove('fa-bounce');
             });
         });
-    </script>
+        
+        // Input focus effects
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                const icon = input.parentElement.querySelector('i');
+                if (icon) icon.classList.add('text-blue-500');
+            });
+            input.addEventListener('blur', () => {
+                const icon = input.parentElement.querySelector('i');
+                if (icon) icon.classList.remove('text-blue-500');
+            });
+        });
+    });
+</script>
 </body>
 </html>

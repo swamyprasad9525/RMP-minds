@@ -159,7 +159,7 @@
                     <p class="text-gray-600 animate-fade-in delay-300">Sign in to access your dashboard</p>
                 </div>
 
-                <form class="space-y-6" id="loginForm">
+                <form class="space-y-6" id="loginForm" action="loginBack.php" method="POST">
                     <div class="animate-fade-in delay-200">
                         <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
                         <div class="relative">
@@ -238,69 +238,67 @@
             </div>
         </div>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Password visibility toggle
-            const togglePassword = document.getElementById('togglePassword');
-            const password = document.getElementById('password');
-            
-            togglePassword.addEventListener('click', function() {
-                const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-                password.setAttribute('type', type);
-                this.innerHTML = type === 'password' ? '<i class="far fa-eye"></i>' : '<i class="far fa-eye-slash"></i>';
-            });
-
-            // Form submission animation
-            const form = document.getElementById('loginForm');
-            const buttonText = document.getElementById('button-text');
-            
-            form.addEventListener('submit', function(e) {
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Password visibility toggle
+        const togglePassword = document.getElementById('togglePassword');
+        const password = document.getElementById('password');
+        
+        togglePassword.addEventListener('click', function() {
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            this.innerHTML = type === 'password' ? '<i class="far fa-eye"></i>' : '<i class="far fa-eye-slash"></i>';
+        });
+    
+        // Form submission
+        const form = document.getElementById('loginForm');
+        const buttonText = document.getElementById('button-text');
+        
+        form.addEventListener('submit', function(e) {
+            // Optional: Add client-side validation here if needed
+            // For example, check if fields are empty
+            if (!password.value || !document.getElementById('username').value) {
                 e.preventDefault();
-                
-                const button = form.querySelector('button[type="submit"]');
-                button.disabled = true;
-                buttonText.textContent = 'AUTHENTICATING...';
-                button.querySelector('i').className = 'fas fa-spinner fa-spin ml-2';
-                
-                // Simulate API call
-                setTimeout(() => {
-                    buttonText.textContent = 'ACCESS GRANTED';
-                    button.querySelector('i').className = 'fas fa-check ml-2';
-                    button.classList.remove('from-blue-600', 'to-blue-400');
-                    button.classList.add('from-green-500', 'to-teal-400');
-                    
-                    // Redirect after success (simulated)
-                    setTimeout(() => {
-                        window.location.href = 'dashboard.html';
-                    }, 1000);
-                }, 2000);
-            });
-
-            // Add hover effects to social buttons
-            const socialBtns = document.querySelectorAll('.social-btn');
-            socialBtns.forEach(btn => {
-                btn.addEventListener('mouseenter', () => {
-                    const icon = btn.querySelector('i');
-                    icon.classList.add('fa-bounce');
-                });
-                btn.addEventListener('mouseleave', () => {
-                    const icon = btn.querySelector('i');
-                    icon.classList.remove('fa-bounce');
-                });
-            });
+                alert('Please fill in all fields');
+                return;
+            }
             
-            // Input focus effects
-            const inputs = document.querySelectorAll('input');
-            inputs.forEach(input => {
-                input.addEventListener('focus', () => {
-                    input.parentElement.querySelector('i').classList.add('text-blue-500');
-                });
-                input.addEventListener('blur', () => {
-                    input.parentElement.querySelector('i').classList.remove('text-blue-500');
-                });
+            // Update button state to show loading
+            const button = form.querySelector('button[type="submit"]');
+            button.disabled = true;
+            buttonText.textContent = 'AUTHENTICATING...';
+            button.querySelector('i').className = 'fas fa-spinner fa-spin ml-2';
+            
+            // Form will now submit to the action URL (loginBack.php)
+            // No need for setTimeout or simulated API call
+        });
+    
+        // Add hover effects to social buttons
+        const socialBtns = document.querySelectorAll('.social-btn');
+        socialBtns.forEach(btn => {
+            btn.addEventListener('mouseenter', () => {
+                const icon = btn.querySelector('i');
+                icon.classList.add('fa-bounce');
+            });
+            btn.addEventListener('mouseleave', () => {
+                const icon = btn.querySelector('i');
+                icon.classList.remove('fa-bounce');
             });
         });
-    </script>
+        
+        // Input focus effects
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                const icon = input.parentElement.querySelector('i');
+                if (icon) icon.classList.add('text-blue-500');
+            });
+            input.addEventListener('blur', () => {
+                const icon = input.parentElement.querySelector('i');
+                if (icon) icon.classList.remove('text-blue-500');
+            });
+        });
+    });
+</script>
 </body>
 </html>

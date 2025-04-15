@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RMP MINDS - Transform Your Life</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .page {
+        display: none;
+      }
+      .page.active {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="min-h-screen bg-white">
+      <!-- Navigation -->
+      <nav class="fixed w-full bg-white/95 backdrop-blur-sm z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex justify-between h-16 items-center">
+            <!-- Logo Section -->
+            <div class="flex items-center space-x-3">
+              <div class="bg-gradient-to-r from-blue-500 to-teal-400 p-1.5 rounded-full animate-fade-in">
+                <div class="bg-white p-1.5 rounded-full">
+                  <i class="fas fa-brain text-blue-500 text-2xl"></i>
+                </div>
+              </div>
+              <span class="text-xl font-bold text-emerald-600 animate-fade-in delay-100">RMP MINDS</span>
+            </div>
+      
+            <!-- Home Button -->
+            <a href="home.html" class="bg-emerald-600 text-white px-6 py-2 rounded-full hover:bg-emerald-700 transition">
+              Home
+            </a>
+          </div>
+        </div>
+      </nav>
+      
+      
+
+      <!-- Basic Info Page -->
+      <div class="page active" id="page-1">
+        <div class="relative min-h-screen">
+          <div class="absolute inset-0">
+            <img
+              src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=2070&q=80"
+              alt="Fitness Background"
+              class="w-full h-screen object-cover fixed"
+            />
+            <div class="absolute inset-0 bg-black/40"></div>
+          </div>
+          <div class="relative pt-24 pb-16">
+            <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div class="bg-white rounded-2xl p-8 shadow-xl">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">Tell Us About Yourself</h2>
+                <div class="space-y-6">
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                    <input type="text" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500">
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Age</label>
+                    <input type="number" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500">
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Gender</label>
+                    <select class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500">
+                      <option>Select Gender</option>
+                      <option>Male</option>
+                      <option>Female</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+                  <button onclick="showPage(2)" class="w-full bg-emerald-600 text-white px-6 py-3 rounded-lg hover:bg-emerald-700 transition">
+                    Continue
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Body Measurements Page -->
+      <div class="page" id="page-2">
+        <div class="relative min-h-screen">
+          <div class="absolute inset-0">
+            <img
+              src="https://images.unsplash.com/photo-1616279969862-e1385aa90e5a?auto=format&fit=crop&w=2070&q=80"
+              alt="Measurements Background"
+              class="w-full h-screen object-cover fixed"
+            />
+            <div class="absolute inset-0 bg-black/40"></div>
+          </div>
+          <div class="relative pt-24 pb-16">
+            <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div class="bg-white rounded-2xl p-8 shadow-xl">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">Your Body Measurements</h2>
+                <div class="space-y-6">
+                  <div class="grid grid-cols-2 gap-4">
+                    <div>
+                      <label class="block text-sm font-medium text-gray-700 mb-2">Height (cm)</label>
+                      <input type="number" id="height" onchange="calculateBMI()" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500">
+                    </div>
+                    <div>
+                      <label class="block text-sm font-medium text-gray-700 mb-2">Weight (kg)</label>
+                      <input type="number" id="weight" onchange="calculateBMI()" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500">
+                    </div>
+                  </div>
+                  <div class="bg-emerald-50 p-4 rounded-lg">
+                    <div class="text-sm font-medium text-emerald-900">Your BMI</div>
+                    <div id="bmi-result" class="text-2xl font-bold text-emerald-600">--</div>
+                    <div id="bmi-category" class="text-sm text-emerald-700">Enter your height and weight to calculate BMI</div>
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Body Type</label>
+                    <select class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500">
+                      <option>Select Body Type</option>
+                      <option>Ectomorph (Slim)</option>
+                      <option>Mesomorph (Athletic)</option>
+                      <option>Endomorph (Curvy)</option>
+                    </select>
+                  </div>
+                  <button onclick="showPage(3)" class="w-full bg-emerald-600 text-white px-6 py-3 rounded-lg hover:bg-emerald-700 transition">
+                    Continue
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fitness Goals Page -->
+      <div class="page" id="page-3">
+        <div class="relative min-h-screen">
+          <div class="absolute inset-0">
+            <img
+              src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=2070&q=80"
+              alt="Goals Background"
+              class="w-full h-screen object-cover fixed"
+            />
+            <div class="absolute inset-0 bg-black/40"></div>
+          </div>
+          <div class="relative pt-24 pb-16">
+            <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div class="bg-white rounded-2xl p-8 shadow-xl">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">Your Fitness Goals</h2>
+                <div class="space-y-6">
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Primary Goal</label>
+                    <select class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500">
+                      <option>Select Goal</option>
+                      <option>Lose Weight</option>
+                      <option>Build Muscle</option>
+                      <option>Improve Fitness</option>
+                      <option>Maintain Weight</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Target Weight (kg)</label>
+                    <input type="number" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500">
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Timeline</label>
+                    <select class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500">
+                      <option>Select Timeline</option>
+                      <option>3 months</option>
+                      <option>6 months</option>
+                      <option>12 months</option>
+                    </select>
+                  </div>
+                  <button onclick="showPage(4)" class="w-full bg-emerald-600 text-white px-6 py-3 rounded-lg hover:bg-emerald-700 transition">
+                    Continue
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lifestyle & Activity Page -->
+      <div class="page" id="page-4">
+        <div class="relative min-h-screen">
+          <div class="absolute inset-0">
+            <img
+              src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?auto=format&fit=crop&w=2070&q=80"
+              alt="Lifestyle Background"
+              class="w-full h-screen object-cover fixed"
+            />
+            <div class="absolute inset-0 bg-black/40"></div>
+          </div>
+          <div class="relative pt-24 pb-16">
+            <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div class="bg-white rounded-2xl p-8 shadow-xl">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">Your Lifestyle</h2>
+                <div class="space-y-6">
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Activity Level</label>
+                    <select class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500">
+                      <option>Select Activity Level</option>
+                      <option>Sedentary (Office Job)</option>
+                      <option>Lightly Active (1-2 days/week)</option>
+                      <option>Moderately Active (3-5 days/week)</option>
+                      <option>Very Active (6-7 days/week)</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Sleep Schedule</label>
+                    <select class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500">
+                      <option>Select Sleep Schedule</option>
+                      <option>Less than 6 hours</option>
+                      <option>6-7 hours</option>
+                      <option>7-8 hours</option>
+                      <option>More than 8 hours</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Stress Level</label>
+                    <select class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500">
+                      <option>Select Stress Level</option>
+                      <option>Low</option>
+                      <option>Moderate</option>
+                      <option>High</option>
+                    </select>
+                  </div>
+                  <button onclick="showPage(5)" class="w-full bg-emerald-600 text-white px-6 py-3 rounded-lg hover:bg-emerald-700 transition">
+                    Generate My Plan
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Results Page -->
+      <div class="page" id="page-5">
+        <div class="relative min-h-screen">
+          <div class="absolute inset-0">
+            <img
+              src="https://images.unsplash.com/photo-1599058917765-a780eda07a3e?auto=format&fit=crop&w=2070&q=80"
+              alt="Results Background"
+              class="w-full h-screen object-cover fixed"
+            />
+            <div class="absolute inset-0 bg-black/40"></div>
+          </div>
+          <div class="relative pt-24 pb-16">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div class="bg-white rounded-2xl p-8 shadow-xl">
+                <div class="text-center mb-8">
+                  <h2 class="text-3xl font-bold text-gray-900 mb-4">Your Personalized Plan Is Ready!</h2>
+                  <p class="text-lg text-gray-600">Based on your profile, we've created a customized fitness plan to help you reach your goals.</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8 mb-8">
+                  <div class="bg-gray-50 rounded-xl p-6">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Workout Plan</h3>
+                    <ul class="space-y-3 text-gray-600">
+                      <li>• 4 training days per week</li>
+                      <li>• 45-60 minute sessions</li>
+                      <li>• Focus on strength and cardio</li>
+                      <li>• Progressive overload approach</li>
+                    </ul>
+                  </div>
+                  <div class="bg-gray-50 rounded-xl p-6">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Training Split</h3>
+                    <ul class="space-y-3 text-gray-600">
+                      <li>• Upper Body Focus</li>
+                      <li>• Lower Body Focus</li>
+                      <li>• Core & Cardio</li>
+                      <li>• Full Body Circuit</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="space-y-6">
+                  <div class="bg-emerald-50 rounded-xl p-6">
+                    <h3 class="text-xl font-semibold text-emerald-900 mb-4">Your 12-Week Journey</h3>
+                    <div class="space-y-4">
+                      <div class="flex items-center">
+                        <div class="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mr-4">
+                          <span class="text-emerald-600 font-semibold">1-4</span>
+                        </div>
+                        <div>
+                          <h4 class="font-medium text-emerald-900">Foundation Phase</h4>
+                          <p class="text-emerald-600">Building habits and basic strength</p>
+                        </div>
+                      </div>
+                      <div class="flex items-center">
+                        <div class="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mr-4">
+                          <span class="text-emerald-600 font-semibold">5-8</span>
+                        </div>
+                        <div>
+                          <h4 class="font-medium text-emerald-900">Progressive Phase</h4>
+                          <p class="text-emerald-600">Increasing intensity and complexity</p>
+                        </div>
+                      </div>
+                      <div class="flex items-center">
+                        <div class="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mr-4">
+                          <span class="text-emerald-600 font-semibold">9-12</span>
+                        </div>
+                        <div>
+                          <h4 class="font-medium text-emerald-900">Peak Phase</h4>
+                          <p class="text-emerald-600">Maximum results and habit solidification</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="text-center">
+                    <button class="bg-emerald-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-emerald-700 transition">
+                      Start Your Program Now
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function calculateBMI() {
+        const height = document.getElementById('height').value;
+        const weight = document.getElementById('weight').value;
+        
+        if (height && weight) {
+          const heightInMeters = height / 100;
+          const bmi = weight / (heightInMeters * heightInMeters);
+          const roundedBMI = Math.round(bmi * 10) / 10;
+          
+          document.getElementById('bmi-result').textContent = roundedBMI;
+          
+          let category = '';
+          if (bmi < 18.5) category = 'Underweight';
+          else if (bmi < 25) category = 'Normal weight';
+          else if (bmi < 30) category = 'Overweight';
+          else category = 'Obese';
+          
+          document.getElementById('bmi-category').textContent = category;
+        }
+      }
+
+      function showPage(pageNumber) {
+        // Hide all pages
+        document.querySelectorAll('.page').forEach(page => {
+          page.classList.remove('active');
+        });
+        
+        // Show the selected page
+        document.getElementById('page-' + pageNumber).classList.add('active');
+        
+        // Scroll to top
+        window.scrollTo(0, 0);
+      }
+    </script>
+  </body>
+</html>
