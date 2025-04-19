@@ -6,12 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>RMP MINDS - Transform Your Life</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <style>
       .page {
         display: none;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
       }
       .page.active {
         display: block;
+        opacity: 1;
+      }
+      .progress-bar {
+        transition: width 0.3s ease-in-out;
+      }
+      .animate-scale {
+        animation: scaleIn 0.5s ease-out;
+      }
+      @keyframes scaleIn {
+        from { transform: scale(0.95); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
+      }
+      .error {
+        border-color: #ef4444 !important;
+      }
+      .error-message {
+        color: #ef4444;
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
       }
     </style>
   </head>
@@ -21,25 +43,25 @@
       <nav class="fixed w-full bg-white/95 backdrop-blur-sm z-50 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="flex justify-between h-16 items-center">
-            <!-- Logo Section -->
             <div class="flex items-center space-x-3">
-              <div class="bg-gradient-to-r from-blue-500 to-teal-400 p-1.5 rounded-full animate-fade-in">
+              <div class="bg-gradient-to-r from-blue-500 to-teal-400 p-1.5 rounded-full animate-scale">
                 <div class="bg-white p-1.5 rounded-full">
                   <i class="fas fa-brain text-blue-500 text-2xl"></i>
                 </div>
               </div>
-              <span class="text-xl font-bold text-emerald-600 animate-fade-in delay-100">RMP MINDS</span>
+              <span class="text-xl font-bold text-emerald-600 animate-scale">RMP MINDS</span>
             </div>
-      
-            <!-- Home Button -->
-            <a href="home.html" class="bg-emerald-600 text-white px-6 py-2 rounded-full hover:bg-emerald-700 transition">
-              Home
-            </a>
+            <div class="flex items-center space-x-4">
+              <div class="w-64 h-2 bg-gray-200 rounded-full">
+                <div id="progress-bar" class="progress-bar h-full bg-emerald-600 rounded-full" style="width: 20%"></div>
+              </div>
+              <a href="home.html" class="bg-emerald-600 text-white px-6 py-2 rounded-full hover:bg-emerald-700 transition">
+                Home
+              </a>
+            </div>
           </div>
         </div>
       </nav>
-      
-      
 
       <!-- Basic Info Page -->
       <div class="page active" id="page-1">
@@ -54,29 +76,34 @@
           </div>
           <div class="relative pt-24 pb-16">
             <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div class="bg-white rounded-2xl p-8 shadow-xl">
+              <div class="bg-white rounded-2xl p-8 shadow-xl animate-scale">
                 <h2 class="text-3xl font-bold text-gray-900 mb-6">Tell Us About Yourself</h2>
                 <div class="space-y-6">
                   <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
-                    <input type="text" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500">
+                    <input type="text" id="fullName" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500">
+                    <p id="fullName-error" class="error-message hidden">Please enter your full name</p>
                   </div>
                   <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Age</label>
-                    <input type="number" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500">
+                    <input type="number" id="age" min="1" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500">
+                    <p id="age-error" class="error-message hidden">Please enter a valid age</p>
                   </div>
                   <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Gender</label>
-                    <select class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500">
-                      <option>Select Gender</option>
-                      <option>Male</option>
-                      <option>Female</option>
-                      <option>Other</option>
+                    <select id="gender" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500">
+                      <option value="">Select Gender</option>
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                      <option value="Other">Other</option>
                     </select>
+                    <p id="gender-error" class="error-message hidden">Please select a gender</p>
                   </div>
-                  <button onclick="showPage(2)" class="w-full bg-emerald-600 text-white px-6 py-3 rounded-lg hover:bg-emerald-700 transition">
-                    Continue
-                  </button>
+                  <div class="flex justify-end space-x-4">
+                    <button onclick="validateAndShowPage(1, 2)" class="bg-emerald-600 text-white px-6 py-3 rounded-lg hover:bg-emerald-700 transition">
+                      Continue
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -97,17 +124,19 @@
           </div>
           <div class="relative pt-24 pb-16">
             <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div class="bg-white rounded-2xl p-8 shadow-xl">
+              <div class="bg-white rounded-2xl p-8 shadow-xl animate-scale">
                 <h2 class="text-3xl font-bold text-gray-900 mb-6">Your Body Measurements</h2>
                 <div class="space-y-6">
                   <div class="grid grid-cols-2 gap-4">
                     <div>
                       <label class="block text-sm font-medium text-gray-700 mb-2">Height (cm)</label>
-                      <input type="number" id="height" onchange="calculateBMI()" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500">
+                      <input type="number" id="height" min="1" onchange="calculateBMI()" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500">
+                      <p id="height-error" class="error-message hidden">Please enter a valid height</p>
                     </div>
                     <div>
                       <label class="block text-sm font-medium text-gray-700 mb-2">Weight (kg)</label>
-                      <input type="number" id="weight" onchange="calculateBMI()" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500">
+                      <input type="number" id="weight" min="1" onchange="calculateBMI()" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500">
+                      <p id="weight-error" class="error-message hidden">Please enter a valid weight</p>
                     </div>
                   </div>
                   <div class="bg-emerald-50 p-4 rounded-lg">
@@ -117,16 +146,22 @@
                   </div>
                   <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Body Type</label>
-                    <select class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500">
-                      <option>Select Body Type</option>
-                      <option>Ectomorph (Slim)</option>
-                      <option>Mesomorph (Athletic)</option>
-                      <option>Endomorph (Curvy)</option>
+                    <select id="bodyType" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500">
+                      <option value="">Select Body Type</option>
+                      <option value="Ectomorph">Ectomorph (Slim)</option>
+                      <option value="Mesomorph">Mesomorph (Athletic)</option>
+                      <option value="Endomorph">Endomorph (Curvy)</option>
                     </select>
+                    <p id="bodyType-error" class="error-message hidden">Please select a body type</p>
                   </div>
-                  <button onclick="showPage(3)" class="w-full bg-emerald-600 text-white px-6 py-3 rounded-lg hover:bg-emerald-700 transition">
-                    Continue
-                  </button>
+                  <div class="flex justify-between space-x-4">
+                    <button onclick="showPage(1)" class="bg-gray-200 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-300 transition">
+                      Back
+                    </button>
+                    <button onclick="validateAndShowPage(2, 3)" class="bg-emerald-600 text-white px-6 py-3 rounded-lg hover:bg-emerald-700 transition">
+                      Continue
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -147,35 +182,43 @@
           </div>
           <div class="relative pt-24 pb-16">
             <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div class="bg-white rounded-2xl p-8 shadow-xl">
+              <div class="bg-white rounded-2xl p-8 shadow-xl animate-scale">
                 <h2 class="text-3xl font-bold text-gray-900 mb-6">Your Fitness Goals</h2>
                 <div class="space-y-6">
                   <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Primary Goal</label>
-                    <select class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500">
-                      <option>Select Goal</option>
-                      <option>Lose Weight</option>
-                      <option>Build Muscle</option>
-                      <option>Improve Fitness</option>
-                      <option>Maintain Weight</option>
+                    <select id="primaryGoal" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500">
+                      <option value="">Select Goal</option>
+                      <option value="Lose Weight">Lose Weight</option>
+                      <option value="Build Muscle">Build Muscle</option>
+                      <option value="Improve Fitness">Improve Fitness</option>
+                      <option value="Maintain Weight">Maintain Weight</option>
                     </select>
+                    <p id="primaryGoal-error" class="error-message hidden">Please select a primary goal</p>
                   </div>
                   <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Target Weight (kg)</label>
-                    <input type="number" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500">
+                    <input type="number" id="targetWeight" min="1" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500">
+                    <p id="targetWeight-error" class="error-message hidden">Please enter a valid target weight</p>
                   </div>
                   <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Timeline</label>
-                    <select class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500">
-                      <option>Select Timeline</option>
-                      <option>3 months</option>
-                      <option>6 months</option>
-                      <option>12 months</option>
+                    <select id="timeline" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500">
+                      <option value="">Select Timeline</option>
+                      <option value="3 months">3 months</option>
+                      <option value="6 months">6 months</option>
+                      <option value="12 months">12 months</option>
                     </select>
+                    <p id="timeline-error" class="error-message hidden">Please select a timeline</p>
                   </div>
-                  <button onclick="showPage(4)" class="w-full bg-emerald-600 text-white px-6 py-3 rounded-lg hover:bg-emerald-700 transition">
-                    Continue
-                  </button>
+                  <div class="flex justify-between space-x-4">
+                    <button onclick="showPage(2)" class="bg-gray-200 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-300 transition">
+                      Back
+                    </button>
+                    <button onclick="validateAndShowPage(3, 4)" class="bg-emerald-600 text-white px-6 py-3 rounded-lg hover:bg-emerald-700 transition">
+                      Continue
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -196,41 +239,49 @@
           </div>
           <div class="relative pt-24 pb-16">
             <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div class="bg-white rounded-2xl p-8 shadow-xl">
+              <div class="bg-white rounded-2xl p-8 shadow-xl animate-scale">
                 <h2 class="text-3xl font-bold text-gray-900 mb-6">Your Lifestyle</h2>
                 <div class="space-y-6">
                   <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Activity Level</label>
-                    <select class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500">
-                      <option>Select Activity Level</option>
-                      <option>Sedentary (Office Job)</option>
-                      <option>Lightly Active (1-2 days/week)</option>
-                      <option>Moderately Active (3-5 days/week)</option>
-                      <option>Very Active (6-7 days/week)</option>
+                    <select id="activityLevel" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500">
+                      <option value="">Select Activity Level</option>
+                      <option value="Sedentary">Sedentary (Office Job)</option>
+                      <option value="Lightly Active">Lightly Active (1-2 days/week)</option>
+                      <option value="Moderately Active">Moderately Active (3-5 days/week)</option>
+                      <option value="Very Active">Very Active (6-7 days/week)</option>
                     </select>
+                    <p id="activityLevel-error" class="error-message hidden">Please select an activity level</p>
                   </div>
                   <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Sleep Schedule</label>
-                    <select class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500">
-                      <option>Select Sleep Schedule</option>
-                      <option>Less than 6 hours</option>
-                      <option>6-7 hours</option>
-                      <option>7-8 hours</option>
-                      <option>More than 8 hours</option>
+                    <select id="sleepSchedule" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500">
+                      <option value="">Select Sleep Schedule</option>
+                      <option value="Less than 6 hours">Less than 6 hours</option>
+                      <option value="6-7 hours">6-7 hours</option>
+                      <option value="7-8 hours">7-8 hours</option>
+                      <option value="More than 8 hours">More than 8 hours</option>
                     </select>
+                    <p id="sleepSchedule-error" class="error-message hidden">Please select a sleep schedule</p>
                   </div>
                   <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Stress Level</label>
-                    <select class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500">
-                      <option>Select Stress Level</option>
-                      <option>Low</option>
-                      <option>Moderate</option>
-                      <option>High</option>
+                    <select id="stressLevel" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500">
+                      <option value="">Select Stress Level</option>
+                      <option value="Low">Low</option>
+                      <option value="Moderate">Moderate</option>
+                      <option value="High">High</option>
                     </select>
+                    <p id="stressLevel-error" class="error-message hidden">Please select a stress level</p>
                   </div>
-                  <button onclick="showPage(5)" class="w-full bg-emerald-600 text-white px-6 py-3 rounded-lg hover:bg-emerald-700 transition">
-                    Generate My Plan
-                  </button>
+                  <div class="flex justify-between space-x-4">
+                    <button onclick="showPage(3)" class="bg-gray-200 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-300 transition">
+                      Back
+                    </button>
+                    <button onclick="validateAndShowPage(4, 5)" class="bg-emerald-600 text-white px-6 py-3 rounded-lg hover:bg-emerald-700 transition">
+                      Generate My Plan
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -251,17 +302,35 @@
           </div>
           <div class="relative pt-24 pb-16">
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div class="bg-white rounded-2xl p-8 shadow-xl">
+              <div class="bg-white rounded-2xl p-8 shadow-xl animate-scale">
                 <div class="text-center mb-8">
                   <h2 class="text-3xl font-bold text-gray-900 mb-4">Your Personalized Plan Is Ready!</h2>
                   <p class="text-lg text-gray-600">Based on your profile, we've created a customized fitness plan to help you reach your goals.</p>
                 </div>
                 
+                <div class="bg-emerald-50 rounded-xl p-6 mb-8">
+                  <h3 class="text-xl font-semibold text-emerald-900 mb-4">Your Profile Summary</h3>
+                  <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <p><strong>Name:</strong> <span id="summary-name">N/A</span></p>
+                      <p><strong>Age:</strong> <span id="summary-age">N/A</span></p>
+                      <p><strong>Gender:</strong> <span id="summary-gender">N/A</span></p>
+                      <p><strong>BMI:</strong> <span id="summary-bmi">N/A</span></p>
+                    </div>
+                    <div>
+                      <p><strong>Goal:</strong> <span id="summary-goal">N/A</span></p>
+                      <p><strong>Target Weight:</strong> <span id="summary-target-weight">N/A</span></p>
+                      <p><strong>Timeline:</strong> <span id="summary-timeline">N/A</span></p>
+                      <p><strong>Activity Level:</strong> <span id="summary-activity">N/A</span></p>
+                    </div>
+                  </div>
+                </div>
+
                 <div class="grid md:grid-cols-2 gap-8 mb-8">
                   <div class="bg-gray-50 rounded-xl p-6">
                     <h3 class="text-xl font-semibold text-gray-900 mb-4">Workout Plan</h3>
-                    <ul class="space-y-3 text-gray-600">
-                      <li>• 4 training days per week</li>
+                    <ul id="workout-plan" class="space-y-3 text-gray-600">
+                      <li>• <span id="training-days">4</span> training days per week</li>
                       <li>• 45-60 minute sessions</li>
                       <li>• Focus on strength and cardio</li>
                       <li>• Progressive overload approach</li>
@@ -269,7 +338,7 @@
                   </div>
                   <div class="bg-gray-50 rounded-xl p-6">
                     <h3 class="text-xl font-semibold text-gray-900 mb-4">Training Split</h3>
-                    <ul class="space-y-3 text-gray-600">
+                    <ul id="training-split" class="space-y-3 text-gray-600">
                       <li>• Upper Body Focus</li>
                       <li>• Lower Body Focus</li>
                       <li>• Core & Cardio</li>
@@ -312,6 +381,16 @@
                     </div>
                   </div>
 
+                  <div class="bg-gray-50 rounded-xl p-6">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Nutrition Guidelines</h3>
+                    <ul id="nutrition-plan" class="space-y-3 text-gray-600">
+                      <li>• Balanced macronutrient intake</li>
+                      <li>• Adequate protein consumption</li>
+                      <li>• Hydration focus</li>
+                      <li>• Whole food emphasis</li>
+                    </ul>
+                  </div>
+
                   <div class="text-center">
                     <button class="bg-emerald-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-emerald-700 transition">
                       Start Your Program Now
@@ -326,6 +405,11 @@
     </div>
 
     <script>
+      // Load saved data on page load
+      window.onload = function() {
+        loadSavedData();
+      };
+
       function calculateBMI() {
         const height = document.getElementById('height').value;
         const weight = document.getElementById('weight').value;
@@ -344,20 +428,172 @@
           else category = 'Obese';
           
           document.getElementById('bmi-category').textContent = category;
+          saveData();
         }
       }
 
       function showPage(pageNumber) {
-        // Hide all pages
         document.querySelectorAll('.page').forEach(page => {
           page.classList.remove('active');
         });
         
-        // Show the selected page
-        document.getElementById('page-' + pageNumber).classList.add('active');
+        const targetPage = document.getElementById('page-' + pageNumber);
+        targetPage.classList.add('active');
         
-        // Scroll to top
-        window.scrollTo(0, 0);
+        // Update progress bar
+        const progress = pageNumber * 20;
+        document.getElementById('progress-bar').style.width = `${progress}%`;
+        
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      function validateAndShowPage(currentPage, nextPage) {
+        let isValid = true;
+        const fields = getPageFields(currentPage);
+        
+        fields.forEach(field => {
+          const input = document.getElementById(field.id);
+          const error = document.getElementById(`${field.id}-error`);
+          
+          if (!input.value || input.value === '') {
+            input.classList.add('error');
+            error.classList.remove('hidden');
+            isValid = false;
+          } else {
+            input.classList.remove('error');
+            error.classList.add('hidden');
+          }
+        });
+
+        if (isValid) {
+          saveData();
+          generateDynamicPlan();
+          showPage(nextPage);
+        }
+      }
+
+      function getPageFields(pageNumber) {
+        switch(pageNumber) {
+          case 1:
+            return [
+              { id: 'fullName' },
+              { id: 'age' },
+              { id: 'gender' }
+            ];
+          case 2:
+            return [
+              { id: 'height' },
+              { id: 'weight' },
+              { id: 'bodyType' }
+            ];
+          case 3:
+            return [
+              { id: 'primaryGoal' },
+              { id: 'targetWeight' },
+              { id: 'timeline' }
+            ];
+          case 4:
+            return [
+              { id: 'activityLevel' },
+              { id: 'sleepSchedule' },
+              { id: 'stressLevel' }
+            ];
+          default:
+            return [];
+        }
+      }
+
+      function saveData() {
+        const data = {
+          fullName: document.getElementById('fullName').value,
+          age: document.getElementById('age').value,
+          gender: document.getElementById('gender').value,
+          height: document.getElementById('height').value,
+          weight: document.getElementById('weight').value,
+          bodyType: document.getElementById('bodyType').value,
+          primaryGoal: document.getElementById('primaryGoal').value,
+          targetWeight: document.getElementById('targetWeight').value,
+          timeline: document.getElementById('timeline').value,
+          activityLevel: document.getElementById('activityLevel').value,
+          sleepSchedule: document.getElementById('sleepSchedule').value,
+          stressLevel: document.getElementById('stressLevel').value,
+          bmi: document.getElementById('bmi-result').textContent
+        };
+        localStorage.setItem('fitnessPlanData', JSON.stringify(data));
+      }
+
+      function loadSavedData() {
+        const savedData = localStorage.getItem('fitnessPlanData');
+        if (savedData) {
+          const data = JSON.parse(savedData);
+          Object.keys(data).forEach(key => {
+            const element = document.getElementById(key);
+            if (element) {
+              element.value = data[key];
+            }
+            if (key === 'bmi') {
+              document.getElementById('bmi-result').textContent = data[key];
+            }
+          });
+          generateDynamicPlan();
+        }
+      }
+
+      function generateDynamicPlan() {
+        const savedData = localStorage.getItem('fitnessPlanData');
+        if (!savedData) return;
+
+        const data = JSON.parse(savedData);
+        
+        // Update summary
+        document.getElementById('summary-name').textContent = data.fullName || 'N/A';
+        document.getElementById('summary-age').textContent = data.age || 'N/A';
+        document.getElementById('summary-gender').textContent = data.gender || 'N/A';
+        document.getElementById('summary-bmi').textContent = data.bmi || 'N/A';
+        document.getElementById('summary-goal').textContent = data.primaryGoal || 'N/A';
+        document.getElementById('summary-target-weight').textContent = data.targetWeight || 'N/A';
+        document.getElementById('summary-timeline').textContent = data.timeline || 'N/A';
+        document.getElementById('summary-activity').textContent = data.activityLevel || 'N/A';
+
+        // Dynamic workout plan
+        let trainingDays = 4;
+        if (data.activityLevel === 'Very Active') trainingDays = 5;
+        else if (data.activityLevel === 'Sedentary') trainingDays = 3;
+        
+        document.getElementById('training-days').textContent = trainingDays;
+
+        // Dynamic nutrition plan based on goal
+        const nutritionPlan = document.getElementById('nutrition-plan');
+        nutritionPlan.innerHTML = '';
+        let nutritionItems = [];
+        if (data.primaryGoal === 'Lose Weight') {
+          nutritionItems = [
+            'Calorie deficit of 500-750 kcal/day',
+            'High protein intake (1.6-2.2g/kg)',
+            'Low-carb, nutrient-dense foods',
+            'Regular meal timing'
+          ];
+        } else if (data.primaryGoal === 'Build Muscle') {
+          nutritionItems = [
+            'Calorie surplus of 250-500 kcal/day',
+            'High protein intake (1.8-2.5g/kg)',
+            'Balanced carb and fat intake',
+            'Pre/post-workout nutrition'
+          ];
+        } else {
+          nutritionItems = [
+            'Balanced macronutrient intake',
+            'Adequate protein consumption',
+            'Hydration focus',
+            'Whole food emphasis'
+          ];
+        }
+        
+        nutritionItems.forEach(item => {
+          const li = document.createElement('li');
+          li.textContent = `• ${item}`;
+          nutritionPlan.appendChild(li);
+        });
       }
     </script>
   </body>

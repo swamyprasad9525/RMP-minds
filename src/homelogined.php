@@ -1,3 +1,28 @@
+<?php
+session_start();
+
+// Check if user is logged in, if not redirect to login page
+if (!isset($_SESSION["user_id"])) {
+    header("Location: login.html");
+    exit;
+}
+
+// Get user's name
+$user_name = isset($_SESSION["user_name"]) ? $_SESSION["user_name"] : "User";
+
+// Check for success messages
+$login_success = isset($_SESSION["login_success"]) ? true : false;
+$registration_success = isset($_SESSION["registration_success"]) ? true : false;
+
+// Clear the messages so they only show once
+if ($login_success) {
+    unset($_SESSION["login_success"]);
+}
+if ($registration_success) {
+    unset($_SESSION["registration_success"]);
+}
+?>
+
 <!doctype html>
 <html lang="en" class="light">
   <head>
@@ -6,6 +31,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>RMP MINDS - AI Health Assistant</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Add Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script>
       tailwind.config = {
         darkMode: 'class',
@@ -22,7 +49,7 @@
   </head>
   <body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
     <!-- Navigation Bar -->
-    <nav class="w-full bg-nav-light dark:bg-nav-dark backdrop-blur-md shadow-sm fixed top-0 z-50 transition-colors duration-200">
+    <nav class="w-full bg-nav modalities:light dark:bg-nav-dark backdrop-blur-md shadow-sm fixed top-0 z-50 transition-colors duration-200">
       <div class="max-w-7xl mx-auto px-4">
         <div class="flex items-center justify-between h-16">
           <div class="flex items-center space-x-2">
@@ -44,11 +71,62 @@
                 <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path>
               </svg>
             </button>
-            <a href="login.html" class="bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-500 dark:to-indigo-500 text-white px-6 py-2 rounded-full font-medium hover:shadow-lg transition duration-300">Login</a>
-          </div>
+            <!-- User Profile Dropdown -->
+            <div class="relative group">
+    <button id="userWelcome" class="flex items-center space-x-3 cursor-pointer text-gray-700 dark:text-gray-300 hover:text-blue-700 dark:hover:text-blue-400 transition font-semibold focus:outline-none" role="button" aria-haspopup="true" aria-expanded="false">
+        <div class="relative w-8 h-8 rounded-full overflow-hidden shadow-sm">
+            <i class="fas fa-user-circle text-2xl absolute top-0 left-0 w-full h-full object-cover"></i>
+            <span class="absolute bottom-0 right-0 w-2 h-2 rounded-full bg-green-500 border-2 border-white dark:border-gray-800"></span> </div>
+        <span><?php echo htmlspecialchars($user_name); ?></span>
+        <i class="fas fa-chevron-down text-sm opacity-70"></i>
+    </button>
+
+    <div id="profileDropdown" class="hidden absolute right-0 mt-3 w-64 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 z-50 transform origin-top-right scale-95 transition duration-200 ease-out group-hover:scale-100 group-focus:scale-100">
+        <div class="py-3 px-4">
+            <div class="flex items-center space-x-3 mb-3">
+                <div class="relative w-10 h-10 rounded-full overflow-hidden shadow">
+                    <i class="fas fa-user-circle text-3xl absolute top-0 left-0 w-full h-full object-cover text-gray-500 dark:text-gray-400"></i>
+                </div>
+                <div>
+                    <h6 class="font-semibold text-gray-900 dark:text-white"><?php echo htmlspecialchars($user_name); ?></h6>
+                </div>
+            </div>
+            <div class="border-t border-gray-100 dark:border-gray-700"></div>
+            <div class="mt-2 space-y-2">
+                <a href="profile.php" class="flex items-center space-x-3 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 px-4 py-2 rounded-md transition font-medium">
+                    <i class="fas fa-user text-blue-500"></i>
+                    <span>My Profile</span>
+                </a>
+                <a href="update_profile.php" class="flex items-center space-x-3 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 px-4 py-2 rounded-md transition font-medium">
+                    <i class="fas fa-user-edit text-yellow-500"></i>
+                    <span>Edit Account</span>
+                </a>
+                <div class="border-t border-gray-100 dark:border-gray-700"></div>
+                <a href="logout.php" class="flex items-center space-x-3 text-red-600 dark:text-red-400 hover:bg-gray-100 dark:hover:bg-gray-700 px-4 py-2 rounded-md transition font-medium">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Sign Out</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
         </div>
       </div>
     </nav>
+
+    <!-- Success Alerts -->
+    <?php if ($login_success): ?>
+    <div id="successAlert" class="fixed top-4 right-4 z-50 bg-green-500 text-white px-4 py-3 rounded-lg shadow-lg flex items-center space-x-2 opacity-0 transition-opacity duration-500">
+      <i class="fas fa-check-circle"></i>
+      <span>Welcome back, <?php echo htmlspecialchars($user_name); ?>!</span>
+    </div>
+    <?php endif; ?>
+    <?php if ($registration_success): ?>
+    <div id="registrationAlert" class="fixed top-4 right-4 z-50 bg-green-500 text-white px-4 py-3 rounded-lg shadow-lg flex items-center space-x-2 opacity-0 transition-opacity duration-500">
+      <i class="fas fa-check-circle"></i>
+      <span>Registration successful! Welcome, <?php echo htmlspecialchars($user_name); ?>!</span>
+    </div>
+    <?php endif; ?>
 
     <!-- getstarted Section -->
     <section class="min-h-screen flex flex-col pt-16">
@@ -69,7 +147,7 @@
                 Experience the future of nutrition with our AI-powered health platform. Get personalized meal plans, real-time tracking, and achieve your wellness goals effortlessly.
               </p>
               <div class="flex space-x-4">
-                <a href="login.html">
+                <a href="start.html">
                 <button class="bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-500 dark:to-indigo-500 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
                   Start Your Journey
                 </button>
@@ -85,7 +163,6 @@
             </div>
           </div>
         </div>
-
         <div class="w-1/2 bg-white dark:bg-gray-800 flex items-center justify-center p-12">
           <div class="aspect-square rounded-3xl overflow-hidden w-full shadow-2xl dark:shadow-blue-500/10">
             <div id="slideshow" class="relative h-full w-full [perspective:2000px] [transform-style:preserve-3d]">
@@ -101,7 +178,6 @@
       <div class="max-w-7xl mx-auto px-4">
         <h2 class="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 bg-clip-text text-transparent">Why Choose RMP MINDS?</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <!-- Feature 1 -->
           <div class="p-6 rounded-2xl bg-gray-50 dark:bg-gray-700 hover:shadow-xl transition duration-300">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-blue-600 dark:text-blue-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
@@ -109,8 +185,6 @@
             <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Personalized Meal Plans</h3>
             <p class="text-gray-600 dark:text-gray-300">AI-driven meal plans tailored to your preferences, dietary restrictions, and health goals.</p>
           </div>
-
-          <!-- Feature 2 -->
           <div class="p-6 rounded-2xl bg-gray-50 dark:bg-gray-700 hover:shadow-xl transition duration-300">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-blue-600 dark:text-blue-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
@@ -118,8 +192,6 @@
             <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Progress Tracking</h3>
             <p class="text-gray-600 dark:text-gray-300">Real-time monitoring of your nutrition goals with detailed analytics and insights.</p>
           </div>
-
-          <!-- Feature 3 -->
           <div class="p-6 rounded-2xl bg-gray-50 dark:bg-gray-700 hover:shadow-xl transition duration-300">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-blue-600 dark:text-blue-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
@@ -136,7 +208,6 @@
       <div class="max-w-7xl mx-auto px-4">
         <h2 class="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 bg-clip-text text-transparent">Latest Health Tips</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <!-- Tip 1 -->
           <div class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300">
             <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1200" alt="Healthy Food" class="w-full h-48 object-cover"/>
             <div class="p-6">
@@ -144,8 +215,6 @@
               <p class="text-gray-600 dark:text-gray-300">Learn about the key components of a balanced diet and how to incorporate them into your daily meals.</p>
             </div>
           </div>
-
-          <!-- Tip 2 -->
           <div class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300">
             <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1200" alt="Exercise" class="w-full h-48 object-cover"/>
             <div class="p-6">
@@ -173,7 +242,7 @@
             </div>
             <div>
               <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Message</label>
-              <textarea rows="4" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"></textarea>
+              <textarea rows="4" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus συγγραφή:ring-blue-500 dark:bg-gray-700 dark:text-white"></textarea>
             </div>
             <button class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-500 dark:to-indigo-500 text-white px-6 py-3 rounded-lg font-medium hover:shadow-lg transition duration-300">Send Message</button>
           </form>
@@ -221,22 +290,23 @@
           </div>
         </div>
         <div class="border-t border-gray-200 dark:border-gray-700 mt-8 pt-8 text-center">
-          <p class="text-gray-600 dark:text-gray-300">&copy; 2024 RMP MINDS. All rights reserved.</p>
+          <p class="text-gray-600 dark:text-gray-300">© 2024 RMP MINDS. All rights reserved.</p>
         </div>
       </div>
     </footer>
 
     <!-- Chatbot Widget -->
     <div class="fixed bottom-4 left-4 z-50">
-  <button id="chat-widget" class="flex items-center bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-500 dark:to-indigo-500 text-white px-4 py-3 rounded-full shadow-lg hover:shadow-xl transition duration-300">
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
-    </svg>
-    <span class="ml-2 hidden sm:inline">Chat with AI</span>
-  </button>
-</div>
+      <button id="chat-widget" class="flex items-center bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-500 dark:to-indigo-500 text-white px-4 py-3 rounded-full shadow-lg hover:shadow-xl transition duration-300">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
+        </svg>
+        <span class="ml-2 hidden sm:inline">Chat with AI</span>
+      </button>
+    </div>
 
     <script>
+      // Existing slideshow code
       const images = [
         "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=1200",
         "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1200",
@@ -314,10 +384,45 @@
 
       // Chatbot Widget
       const chatWidget = document.getElementById('chat-widget');
-  chatWidget.addEventListener('click', function() {
-    // Redirect to the chatbot page
-    window.location.href = '../Chat-bot-main/Chat-bot-main/index.html';
-  });
+      chatWidget.addEventListener('click', function() {
+        window.location.href = '../Chat-bot-main/Chat-bot-main/index.html';
+      });
+
+      // Profile Dropdown and Alerts
+      document.addEventListener('DOMContentLoaded', function() {
+        const successAlert = document.getElementById('successAlert');
+        const registrationAlert = document.getElementById('registrationAlert');
+        
+        if (successAlert) {
+          setTimeout(() => successAlert.classList.add('opacity-100'), 300);
+          setTimeout(() => {
+            successAlert.classList.remove('opacity-100');
+            setTimeout(() => successAlert.remove(), 500);
+          }, 5000);
+        }
+
+        if (registrationAlert) {
+          setTimeout(() => registrationAlert.classList.add('opacity-100'), 300);
+          setTimeout(() => {
+            registrationAlert.classList.remove('opacity-100');
+            setTimeout(() => registrationAlert.remove(), 500);
+          }, 5000);
+        }
+
+        const userWelcome = document.getElementById('userWelcome');
+        const profileDropdown = document.getElementById('profileDropdown');
+        userWelcome.addEventListener('click', () => {
+          profileDropdown.classList.toggle('hidden');
+          userWelcome.setAttribute('aria-expanded', profileDropdown.classList.contains('hidden') ? 'false' : 'true');
+        });
+
+        document.addEventListener('click', (event) => {
+          if (!userWelcome.contains(event.target) && !profileDropdown.contains(event.target)) {
+            profileDropdown.classList.add('hidden');
+            userWelcome.setAttribute('aria-expanded', 'false');
+          }
+        });
+      });
 
       // Initial slideshow setup
       updateSlideshow();
@@ -325,13 +430,15 @@
 
       // Smooth scrolling for anchor links
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
+        anchor.addEventListener('click', function(e) {
           e.preventDefault();
           document.querySelector(this.getAttribute('href')).scrollIntoView({
             behavior: 'smooth'
           });
         });
       });
+
+      
     </script>
   </body>
 </html>

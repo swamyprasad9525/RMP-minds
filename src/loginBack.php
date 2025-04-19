@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             setcookie("remember_user", $user["id"], time() + (86400 * 30), "/");
         }
 
-        header("Location: home.html");
+        header("Location: homelogined.php");
         exit();
     } else {
         echo "Invalid credentials.";
